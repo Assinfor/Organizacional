@@ -67,7 +67,7 @@
                         <hr />
                         <div style="color:#a5a5a5;">
                         	
-                        		<center>&copy; 2014, Sistema Organizacional
+                        		<center>&copy; 2015, Sistema Organizacional
                         		</center>
                             
                         </div>

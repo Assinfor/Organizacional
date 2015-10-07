@@ -2,7 +2,8 @@
 class Login_model extends CI_Model{
 	function autenticar($email, $senha){
 		$query=$this->db
-				->select('*, count(admin.pessoa_id) as admin')
+				->select('*, count(admin.pessoa_id) as admin,
+						count(pessoa.id) as pessoa')
 				->from('pessoa')
 				->join('usuario', 'usuario.pessoa_id = pessoa.id', 'left')
 				->join('email', 'pessoa.id = email.pessoa_id','left')
@@ -13,6 +14,6 @@ class Login_model extends CI_Model{
 				->where('email.email =',$email)
 				->where('usuario.status =','ativo');;
 		$query = $this->db->get_where();
-		return $query;
+		return $query->row_array();
 	}
 }

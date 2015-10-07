@@ -16,16 +16,15 @@ class Login extends MX_Controller{
 		$email = $this->input->post('email');
 		$senha = md5($this->input->post('senha'));
 		$query=$this->login_model->autenticar($email,$senha);
-		print_r($query);
-		if($query->num_rows() > 0){
-			$resultado=$query->row_array();
-			$_SESSION['user_data'] = $resultado;
-			if($resultado['admin']>0){
+		if($query['pessoa'] > 0){
+			$_SESSION['user_data'] = $query;
+			if($query['admin']>0){
 				$_SESSION['user_data']['permissoes'][]="admin";
 			}
-			//redirect('', 'refresh');
+			redirect('', 'refresh');
 		}else{
-			$this->view->set_message("Login inv·lido", "alert alert-error");
+			$this->view->set_message("Login inv√°lido", "alert alert-error");
+			redirect('', 'refresh');
 		}
 	}
 	function logout(){

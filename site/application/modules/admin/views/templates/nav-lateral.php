@@ -12,13 +12,22 @@
 	</div>
 	<br />
 	<ul class="nav nav-collapse collapse nav-collapse-primary">
-<!------usu·rio----->
+<!------usu√°rio----->
 <li class="">
 <span class="glow"></span>
-	<a href="<?php echo base_url();?>admin/usuario" rel="tooltip" data-placement="right" data-original-title="usu·rio">
+	<a href="<?php echo base_url();?>admin/usuario" rel="tooltip" data-placement="right" data-original-title="usu√°rio">
 	<!--<i class="icon-user icon-1x"></i>-->
 	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
-	<span>Usu·rio</span>
+	<span>Usu√°rio</span>
+	</a>
+</li>
+<!------setor----->
+<li class="">
+<span class="glow"></span>
+	<a href="<?php echo base_url();?>admin/setor" rel="tooltip" data-placement="right" data-original-title="setor">
+	<!--<i class="icon-user icon-1x"></i>-->
+	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
+	<span>Setor</span>
 	</a>
 </li>
 </ul>

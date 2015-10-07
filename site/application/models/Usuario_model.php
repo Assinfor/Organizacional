@@ -10,4 +10,25 @@ class Usuario_model extends CI_Model{
 		$query = $this->db->get_where();
 		return $query->result();
 	}
+	function salvar_pessoa($pessoa){
+		if($this->db->insert('pessoa', $pessoa)){
+			return $this->db->insert_id();
+		}else{
+			return false;
+		}
+	}
+	function salvar_pessoa_fisica($pessoa_fisica){
+		if($this->db->insert('pessoa_fisica', $pessoa_fisica)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	function salvar_usuario($usuario){
+		if($this->db->insert('usuario', $usuario)){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }
