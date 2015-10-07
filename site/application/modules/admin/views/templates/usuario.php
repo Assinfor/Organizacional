@@ -69,14 +69,14 @@
                             <div class="control-group">
                                 <label class="control-label" >Nome:</label>
                                 <div class="controls">
-                                	<input type="text" style="display:none" required/>
+                                	<input type="text" style="display:none">
                                     <input type="text" name="nome" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Senha:</label>
                                 <div class="controls">
-                                	<input type="password" style="display:none" required/>
+                                	<input type="password" style="display:none">
                                     <input type="password" name="senha" autocomplete="off" required/>
                                 </div>
                             </div>

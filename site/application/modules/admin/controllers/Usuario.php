@@ -49,7 +49,7 @@ class Usuario extends MX_Controller {
 					}
 					$emails = $this->input->post('email');
 					foreach($emails as $email){
-						$telefone = array(
+						$email = array(
 								'pessoa_id' => $pessoa_id,
 								'email' => $email
 						);
