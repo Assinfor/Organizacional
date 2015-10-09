@@ -35,6 +35,7 @@
                 		<tr>
                     		<th><div>#</div></th>
                     		<th><div>Nome</div></th>
+                    		<th><div>Descrição</div></th>
                     		<th><div>Opções</div></th>
 						</tr>
 					</thead>
@@ -43,6 +44,7 @@
                         <tr>
                             <td><?php echo $count++;?></td>
 							<td><?php echo $setor->nome;?></td>
+							<td><?php echo $setor->descricao;?></td>
 							<td align="center">
                             	<a data-toggle="modal" href="#modal-form" onclick="editar_setor(<?php echo $setor->id; ?>)" class="btn btn-gray btn-small">
                                 		<i class="icon-wrench"></i>
