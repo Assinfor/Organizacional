@@ -18,6 +18,7 @@ class Login extends MX_Controller{
 		$query=$this->login_model->autenticar($email,$senha);
 		if($query['pessoa'] > 0){
 			$_SESSION['user_data'] = $query;
+			$_SESSION['user_data']['permissoes'][]="pessoa";
 			if($query['admin']>0){
 				$_SESSION['user_data']['permissoes'][]="admin";
 			}

@@ -7,6 +7,8 @@
 		<link href="<?php echo base_url();?>public/template/css/ekattor.css" media="screen" rel="stylesheet" type="text/css" />
 		<script src="<?php echo base_url();?>public/template/js/ekattor.js" type="text/javascript"></script>
 		<script src="<?php echo base_url();?>public/template/js/script.js" type="text/javascript"></script>
+		<script src="<?php echo base_url();?>public/template/js/jquery.maskedinput.js" type="text/javascript"></script>
+		<script src="<?php echo base_url();?>public/template/js/mascaras.js" type="text/javascript"></script>
     	<title>Organizacional</title>
     </head>
     <body> 

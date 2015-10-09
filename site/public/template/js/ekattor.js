@@ -32704,7 +32704,7 @@ function (X, l, n) {
                 sEmptyTable: "Sem resultados na tabela",
                 sInfo: "Mostrando de _START_ at\u00e9 _END_ de _TOTAL_ resultados",
                 sInfoEmpty: "Mostrando de 0 até 0 de 0 resultados",
-                sInfoFiltered: "(filtered from _MAX_ total entries)",
+                sInfoFiltered: "(filtrado de _MAX_ valores)",
                 sInfoPostFix: "",
                 sInfoThousands: ",",
                 sLengthMenu: "Mostrar _MENU_ resultados",

@@ -2,30 +2,26 @@
 class Usuario_model extends CI_Model{
 	function listar(){
 		$this->db
-			->select('*')
-			->from('pessoa')
-			->join('usuario', 'usuario.pessoa_id = pessoa.id', 'left')
-			->join('endereco', 'pessoa.id=endereco.pessoa_id', 'left')
-			->where('usuario.status =','ativo');
+			->select('p.*, u.id as usuario_id, u.status, e.*, c.uf, c.nome as cidade')
+			->from('pessoa p')
+			->join('usuario u', 'u.pessoa_id = p.id', 'left')
+			->join('endereco e', 'p.id=e.pessoa_id', 'left')
+			->join('cidade c', 'c.id=e.cidade_id', 'left')
+			->where('u.status =','ativo');
 		$query = $this->db->get_where();
 		return $query->result();
 	}
-	function salvar_pessoa($pessoa){
-		if($this->db->insert('pessoa', $pessoa)){
-			return $this->db->insert_id();
-		}else{
-			return false;
-		}
-	}
-	function salvar_pessoa_fisica($pessoa_fisica){
-		if($this->db->insert('pessoa_fisica', $pessoa_fisica)){
+	function salvar_usuario($usuario){
+		if($this->db->insert('usuario', $usuario)){
 			return true;
 		}else{
 			return false;
 		}
 	}
-	function salvar_usuario($usuario){
-		if($this->db->insert('usuario', $usuario)){
+	function deletar_usuario($id){
+		if($this->db->set('status', 'inativo')
+                    ->where('id =', $id)
+                    ->update('usuario')){
 			return true;
 		}else{
 			return false;

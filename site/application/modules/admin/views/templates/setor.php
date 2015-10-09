@@ -1,5 +1,5 @@
 <div class="main-content">
-<div class="content-fluid padded">
+<div class="content-fluid">
 <div class="box">
 	<div class="box-header">
     	<!------CONTROL TABS START------->
@@ -35,6 +35,7 @@
                 		<tr>
                     		<th><div>#</div></th>
                     		<th><div>Nome</div></th>
+                    		<th><div>Opções</div></th>
 						</tr>
 					</thead>
 					<tbody>
@@ -43,10 +44,10 @@
                             <td><?php echo $count++;?></td>
 							<td><?php echo $setor->nome;?></td>
 							<td align="center">
-                            	<a href="<?php echo base_url()?>admin/usuario/editar_setor/<?php echo $usuario->id ?>" data-toggle="modal" href="#modal-form" class="btn btn-gray btn-small">
+                            	<a data-toggle="modal" href="#modal-form" onclick="editar_setor(<?php echo $setor->id; ?>)" class="btn btn-gray btn-small">
                                 		<i class="icon-wrench"></i>
                                 </a>
-                            	<a href="<?php echo base_url()?>admin/usuario/deletar_setor/<?php echo $usuario->id ?>" data-toggle="modal" href="#modal-delete" class="btn btn-red btn-small">
+                            	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>admin/setor/deletar_setor/<?php echo $setor->id;?>')" class="btn btn-red btn-small">
                                 		<i class="icon-trash"></i> 
                                 </a>
         					</td>
@@ -77,17 +78,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="control-group">
-                                <label class="control-label">Gerente:</label>
-                                <div class="controls">
-                                     <select name='gerente'>
-                                     <option value=''>Selecione um Gerente</option>
-                                     <?php foreach($usuarios as $usuario):?>
-									  <option value='<?php echo $usuario->id ?>'><?php echo $usuario->nome ?></option>
-									 <?php endforeach;?>
-									</select>
-                                </div>
-                            </div>
                         <div class="form-actions">
                             <button type="submit" class="btn btn-blue">Adicionar Novo Setor</button>
                         </div>
@@ -98,5 +88,6 @@
 		</div>
 	</div>
 </div
+</div>
 </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="main-content">
-<div class="content-fluid padded">
+<div class="content-fluid">
 <div class="box">
 	<div class="box-header">
     	<!------CONTROL TABS START------->
@@ -37,6 +37,7 @@
                     		<th><div>Nome</div></th>
                     		<th><div>Rua</div></th>
                     		<th><div>Número</div></th>
+                    		<th><div>Cidade</div></th>
                     		<th><div>Opções</div></th>
 						</tr>
 					</thead>
@@ -47,11 +48,12 @@
 							<td><?php echo $usuario->nome;?></td>
 							<td><?php echo $usuario->logradouro;?></td>
 							<td><?php echo $usuario->numero;?></td>
+							<td><?php echo $usuario->cidade;?></td>
 							<td align="center">
-                            	<a href="<?php echo base_url()?>admin/usuario/editar_usuario/<?php echo $usuario->id ?>" data-toggle="modal" href="#modal-form" class="btn btn-gray btn-small">
+                            	<a data-toggle="modal" href="#modal-form" onclick="" class="btn btn-gray btn-small">
                                 		<i class="icon-wrench"></i>
                                 </a>
-                            	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>admin/usuario/delete/<?php echo $usuario->id;?>')" class="btn btn-red btn-small">
+                            	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>admin/usuario/deletar_usuario/<?php echo $usuario->usuario_id;?>')" class="btn btn-red btn-small">
                                 		<i class="icon-trash"></i> 
                                 </a>
         					</td>
@@ -77,7 +79,7 @@
                                 <label class="control-label">Senha:</label>
                                 <div class="controls">
                                 	<input type="password" style="display:none">
-                                    <input type="password" name="senha" autocomplete="off" required/>
+                                    <input type="password" name="senha" autocomplete="off" class="senha" required/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -112,7 +114,7 @@
                             <div class="control-group">
                                 <label class="control-label">CPF:</label>
                                 <div class="controls">
-                                     <input type="text" name="cpf" required/>
+                                     <input type="text" name="cpf" class="cpf" required/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -121,11 +123,34 @@
                                      <input type="text" name="rg" required/>
                                 </div>
                             </div>
+                            <div class="control-group">
+                                <label class="control-label">Carteira de trabalho:</label>
+                                <div class="controls">
+                                     <input type="text" name="clt" required/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">PIS:</label>
+                                <div class="controls">
+                                     <input type="text" name="pis" required/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Setor:</label>
+                                <div class="controls">
+                                     <select name='setor'>
+                                     <option value=''>Selecione um Setor</option>
+                                     <?php foreach($setores as $setor):?>
+									  <option value='<?php echo $setor->id ?>'><?php echo $setor->nome ?></option>
+									 <?php endforeach;?>
+									</select>
+                                </div>
+                            </div>
                             <label class="control-label">Telefone:</label>
                             <div id="telefones">
                             <div id="telefone-form-0" class="control-group">
                                 <div class="controls">
-                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" required/>
+                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" placeholder="XX" required/>
                                      <input type="text" name="telefone[]" class="tel-form" required/>
                                      <select name='tipo[]' required/>
 	                                     <option value=''>Selecione o Tipo de Telefone</option>

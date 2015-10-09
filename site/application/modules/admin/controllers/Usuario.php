@@ -5,19 +5,24 @@ class Usuario extends MX_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('usuario_model');
+		$this->load->model('pessoa_model');
+		$this->load->model('pessoafisica_model');
+		$this->load->model('funcionario_model');
 	}
 	public function index(){
 		$this->load->model('cidade_model');
+		$this->load->model('setor_model');
 		$this->data['template']="usuario";
 		$this->data['usuarios']=$this->usuario_model->listar();
 		$this->data['cidades']=$this->cidade_model->listar();
+		$this->data['setores']=$this->setor_model->listar();
 		$this->view->show_view($this->data);
 	}
 	public function salvar_usuario(){
 		$pessoa = array(
 			'nome' => $this->input->post('nome')	
 		);
-		if($pessoa_id=$this->usuario_model->salvar_pessoa($pessoa)){
+		if($pessoa_id=$this->pessoa_model->salvar($pessoa)){
 			$this->load->model('endereco_model');
 			$endereco = array(
 					'pessoa_id' => $pessoa_id,
@@ -32,7 +37,7 @@ class Usuario extends MX_Controller {
 					'cpf' => $this->input->post('cpf'),
 					'rg' => $this->input->post('rg')
 				);
-				if($this->usuario_model->salvar_pessoa_fisica($pessoa_fisica)){
+				if($this->pessoafisica_model->salvar($pessoa_fisica)){
 					$this->load->model('telefone_model');
 					$this->load->model('email_model');
 					$ddd = $this->input->post('ddd');
@@ -60,8 +65,19 @@ class Usuario extends MX_Controller {
 						'pessoa_id' => $pessoa_id
 					);
 					if($this->usuario_model->salvar_usuario($usuario)){
-						$this->view->set_message("Usuário adicionado com sucesso", "alert alert-success");
-						redirect('admin/usuario', 'refresh');
+						$funcionario = array(
+								'clt' => $this->input->post('clt'),
+								'pis' => $this->input->post('pis'),
+								'setor_id' => $this->input->post('setor'),
+								'pessoa_fisica_pessoa_id' => $pessoa_id
+						);
+						if($this->funcionario_model->salvar($funcionario)){
+							$this->view->set_message("Usuário adicionado com sucesso", "alert alert-success");
+							redirect('admin/usuario', 'refresh');
+						}else{
+							$this->view->set_message("Erro ao salvar funcionário", "alert alert-error");
+							redirect('admin/usuario', 'refresh');
+						}
 					}else{
 						$this->view->set_message("Erro ao salvar usuário", "alert alert-error");
 						redirect('admin/usuario', 'refresh');
@@ -79,5 +95,15 @@ class Usuario extends MX_Controller {
 			redirect('admin/usuario', 'refresh');
 		}
 		
+	}
+	
+	public function deletar_usuario($id){
+		if($this->usuario_model->deletar_usuario($id)){
+			$this->view->set_message("Usuário deletado com sucesso", "alert alert-success");
+			redirect('admin/usuario', 'refresh');
+		}else{
+			$this->view->set_message("Erro ao deletar usuário", "alert alert-error");
+			redirect('admin/usuario', 'refresh');
+		}
 	}
 }
