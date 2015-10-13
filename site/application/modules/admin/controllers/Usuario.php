@@ -8,9 +8,10 @@ class Usuario extends MX_Controller {
 		$this->load->model('pessoa_model');
 		$this->load->model('pessoafisica_model');
 		$this->load->model('funcionario_model');
+		$this->load->model('cidade_model');
+		$this->load->model('endereco_model');
 	}
 	public function index(){
-		$this->load->model('cidade_model');
 		$this->load->model('setor_model');
 		$this->data['template']="usuario";
 		$this->data['usuarios']=$this->usuario_model->listar();
@@ -18,25 +19,17 @@ class Usuario extends MX_Controller {
 		$this->data['setores']=$this->setor_model->listar();
 		$this->view->show_view($this->data);
 	}
-	public function salvar_usuario(){
+	public function salvar_usuario($id=null){
+		if($id==null){
 		$pessoa = array(
 			'nome' => $this->input->post('nome')	
 		);
 		if($pessoa_id=$this->pessoa_model->salvar($pessoa)){
-			$this->load->model('endereco_model');
-			$endereco = array(
-					'pessoa_id' => $pessoa_id,
-					'logradouro' => $this->input->post('logradouro'),
-					'numero' => $this->input->post('numero'),
-					'bairro' => $this->input->post('bairro'),
-					'cidade_id' => $this->input->post('cidade')
-			);
+			$endereco = $this->input->post('endereco');
+			$endereco['pessoa_id']=$pessoa_id;
 			if($this->endereco_model->salvar($endereco)){
-				$pessoa_fisica = array(
-					'pessoa_id' => $pessoa_id,
-					'cpf' => $this->input->post('cpf'),
-					'rg' => $this->input->post('rg')
-				);
+				$pessoa_fisica=$this->input->post('pessoa_fisica');
+				$pessoa_fisica['pessoa_id']=$pessoa_id;
 				if($this->pessoafisica_model->salvar($pessoa_fisica)){
 					$this->load->model('telefone_model');
 					$this->load->model('email_model');
@@ -65,12 +58,8 @@ class Usuario extends MX_Controller {
 						'pessoa_id' => $pessoa_id
 					);
 					if($this->usuario_model->salvar_usuario($usuario)){
-						$funcionario = array(
-								'clt' => $this->input->post('clt'),
-								'pis' => $this->input->post('pis'),
-								'setor_id' => $this->input->post('setor'),
-								'pessoa_fisica_pessoa_id' => $pessoa_id
-						);
+						$funcionario = $this->input->post('funcionario');
+						$funcionario['pessoa_fisica_pessoa_id']=$pessoa_id;
 						if($this->funcionario_model->salvar($funcionario)){
 							$this->view->set_message("Usuário adicionado com sucesso", "alert alert-success");
 							redirect('admin/usuario', 'refresh');
@@ -94,7 +83,28 @@ class Usuario extends MX_Controller {
 			$this->view->set_message("Erro ao salvar pessoa", "alert alert-error");
 			redirect('admin/usuario', 'refresh');
 		}
-		
+		}else{
+			$endereco = $this->input->post('endereco');
+			if($this->endereco_model->salvar($endereco, $id)){
+				$pessoa_fisica=$this->input->post('pessoa_fisica');
+				if($this->pessoafisica_model->salvar($pessoa_fisica, $id)){
+					$funcionario = $this->input->post('funcionario');
+					if($this->funcionario_model->salvar($funcionario, $id)){
+						$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
+						redirect('admin/usuario', 'refresh');
+					}else{
+						$this->view->set_message("Erro ao salvar funcionário", "alert alert-error");
+						redirect('admin/usuario', 'refresh');
+					}
+				}else{
+					$this->view->set_message("Erro ao salvar pessoa física", "alert alert-error");
+					redirect('admin/usuario', 'refresh');
+				}
+			}else{
+				$this->view->set_message("Erro ao salvar endereço", "alert alert-error");
+				redirect('admin/usuario', 'refresh');
+			}
+		}
 	}
 	
 	public function deletar_usuario($id){
@@ -105,5 +115,9 @@ class Usuario extends MX_Controller {
 			$this->view->set_message("Erro ao deletar usuário", "alert alert-error");
 			redirect('admin/usuario', 'refresh');
 		}
+	}
+	public function buscar_usuario($id){
+		$resultado=$this->usuario_model->listar($id);
+		echo json_encode($resultado);
 	}
 }

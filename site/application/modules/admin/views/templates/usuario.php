@@ -1,5 +1,5 @@
 <div class="main-content">
-<div class="content-fluid">
+<div class="content-fluid padding">
 <div class="box">
 	<div class="box-header">
     	<!------CONTROL TABS START------->
@@ -50,7 +50,7 @@
 							<td><?php echo $usuario->numero;?></td>
 							<td><?php echo $usuario->cidade;?></td>
 							<td align="center">
-                            	<a data-toggle="modal" href="#modal-form" onclick="" class="btn btn-gray btn-small">
+                            	<a data-toggle="modal" href="#modal-form" onclick="editar_usuario(<?php echo $usuario->usuario_id; ?>)" class="btn btn-gray btn-small">
                                 		<i class="icon-wrench"></i>
                                 </a>
                             	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>admin/usuario/deletar_usuario/<?php echo $usuario->usuario_id;?>')" class="btn btn-red btn-small">
@@ -85,25 +85,25 @@
                             <div class="control-group">
                                 <label class="control-label">Rua:</label>
                                 <div class="controls">
-                                     <input type="text" name="logradouro" required/>
+                                     <input type="text" name="endereco[logradouro]" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Número:</label>
                                 <div class="controls">
-                                     <input type="text" name="numero" required/>
+                                     <input type="text" name="endereco[numero]" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Bairro:</label>
                                 <div class="controls">
-                                     <input type="text" name="bairro" required/>
+                                     <input type="text" name="endereco[bairro]" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Cidade:</label>
                                 <div class="controls">
-                                     <select name='cidade'>
+                                     <select name='endereco[cidade_id]' id="cidade-select">
                                      <option value=''>Selecione uma Cidade</option>
                                      <?php foreach($cidades as $cidade):?>
 									  <option value='<?php echo $cidade->id ?>'><?php echo $cidade->nome ?></option>
@@ -114,31 +114,31 @@
                             <div class="control-group">
                                 <label class="control-label">CPF:</label>
                                 <div class="controls">
-                                     <input type="text" name="cpf" class="cpf" required/>
+                                     <input type="text" name="pessoa_fisica[cpf]" class="cpf" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">RG:</label>
                                 <div class="controls">
-                                     <input type="text" name="rg" required/>
+                                     <input type="text" name="pessoa_fisica[rg]" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Carteira de trabalho:</label>
                                 <div class="controls">
-                                     <input type="text" name="clt" required/>
+                                     <input type="text" name="funcionario[clt]" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">PIS:</label>
                                 <div class="controls">
-                                     <input type="text" name="pis" required/>
+                                     <input type="text" name="funcionario[pis]" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Setor:</label>
                                 <div class="controls">
-                                     <select name='setor'>
+                                     <select name='funcionario[setor_id]' id='setor-select'>
                                      <option value=''>Selecione um Setor</option>
                                      <?php foreach($setores as $setor):?>
 									  <option value='<?php echo $setor->id ?>'><?php echo $setor->nome ?></option>

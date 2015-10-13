@@ -1,5 +1,5 @@
 <div class="main-content">
-<div class="content-fluid">
+<div class="content-fluid padding">
 <div class="box">
 	<div class="box-header">
     	<!------CONTROL TABS START------->

@@ -1,9 +1,29 @@
+#matriz-select{
+	display:none;
+}
+
 .ddd-form{
 	width:50px;
 }
 
+.ddd-margin{
+	margin-right:3px;
+}
+
 .tel-form{
 	width:150px;
+}
+
+.tel-margin{
+	margin-right:3px;
+}
+
+.padding{
+	padding:15px;
+}
+
+.margin-select{
+	margin-left:10px;
 }
 
 .google_map{
