@@ -13,7 +13,7 @@ $("#adicionar-telefone").click(function(){
 	$countTel++;
     $("<div id='telefone-form-"+$countTel+"' class='control-group'>"+
 	    "<div class='controls'>"+
-	    	"<input id='ddd' type='text' name='ddd[]' class='ddd-form ddd-margin' placeholder='XX' required/>"+
+	    	"<input id='ddd' type='text' name='ddd[]' class='ddd-form ddd-margin' required/>"+
 	         "<input type='text' name='telefone[]' class='tel-form tel-margin' required/>"+
 	         "<select name='tipo[]'>"+
 	             "<option value=''>Selecione o Tipo de Telefone</option>"+
@@ -25,6 +25,7 @@ $("#adicionar-telefone").click(function(){
 	    "</div>"+
 	"</div>").appendTo("#telefones");
 })
+
 $("#adicionar-email").click(function(){
 	$countEmail++
 	$("<div id='email-form-"+$countEmail+"' class='control-group'>"+
@@ -34,6 +35,7 @@ $("#adicionar-email").click(function(){
             "</div>"+
         "</div>").appendTo("#emails");
 })
+
 })
 
 function deletarTelefone(valor){
@@ -64,7 +66,7 @@ function editar_usuario(id){
 			            "<div class='control-group'>"+
 			                "<label class='control-label' >Nome:</label>"+
 			                "<div class='controls'>"+
-			                	"<input type='text' style='display:none'>"+
+			                	"<input type='text' name='pessoa_id' value='"+data[0].id+"' style='display:none'>"+
 			                    "<input type='text' name='nome' value='"+data[0].nome+"' required/>"+
 			                "</div>"+
 			            "</div>"+
@@ -164,4 +166,82 @@ function editar_setor(id){
         				"</form>");
         }
 })
+}
+
+function editar_empresa(id){
+	var $regime = $('#regime-select').clone();
+	var base_url='http://localhost/Organizacional/site/';
+	$.ajax({
+        url: base_url+"admin/empresa/buscar_empresa/"+id,
+        dataType: 'json',
+        type: "post",
+        success: function(data){
+        			$('#modal-body').html('');
+        			$('#modal-body').append("<form action='"+base_url+"admin/empresa/salvar_empresa/"+id+"' method='post'>"+
+        					"<div class='padded'>"+
+        						"<div class='control-group'>"+
+			                        "<label class='control-label'>Nome:</label>"+
+			                        "<div class='controls'>"+
+			                            "<input type='text' name='nome' value='"+data[0].nome+"' required/>"+
+			                        "</div>"+
+			                    "</div>"+
+			                    "<div class='control-group'>"+
+	                                "<label class='control-label'>CNPJ:</label>"+
+	                                "<div class='controls'>"+
+	                                    "<input type='text' name='pessoa_juridica[cnpj]' value='"+data[0].cnpj+"' required/>"+
+	                                "</div>"+
+	                            "</div>"+
+	                            "<div class='control-group'>"+
+	                                "<label class='control-label'>IE:</label>"+
+	                                "<div class='controls'>"+
+	                                     "<input type='text' name='pessoa_juridica[ie]' value='"+data[0].ie+"' required/>"+
+	                                "</div>"+
+	                            "</div>"+
+	                            "<div class='control-group'>"+
+	                                "<label class='control-label'>Regime Tributário:</label>"+
+	                                "<div class='controls' id='regime-mark'>"+
+	                                "</div>"+
+	                            "</div>"+
+			                "<div class='form-actions'>"+
+			                    "<button type='submit' class='btn btn-blue'>Salvar Mudanças</button>"+
+			                "</div>"+
+        				"</form>");
+        			$regime.val(data[0].regime_id);
+                	$regime.insertAfter('#regime-mark');
+        }
+})
+}
+
+function editar_regime(id){
+		var base_url='http://localhost/Organizacional/site/';
+		$.ajax({
+	        url: base_url+"admin/regime_tributario/buscar_regime/"+id,
+	        dataType: 'json',
+	        type: "post",
+	        success: function(data){
+	        			$('#modal-body').html('');
+	        			$('#modal-body').append("<form action='"+base_url+"admin/regime_tributario/salvar_regime/"+id+"' method='post'>"+
+	        					"<div class='padded'>"+
+	        						"<div class='control-group'>"+
+				                        "<label class='control-label'>Nome:</label>"+
+				                        "<div class='controls'>"+
+				                            "<input type='text' name='regime[nome]' value='"+data[0].nome+"' required/>"+
+				                        "</div>"+
+				                    "</div>"+
+				                    "<div class='control-group'>"+
+				                        "<label class='control-label'>Descrição:</label>"+
+				                        "<div class='controls'>"+
+				                            "<div class='box closable-chat-box'>"+ 
+				                                "<div class='chat-message-box'>"+
+				                                        "<textarea name='regime[descricao]' id='ttt' rows='5'>"+data[0].descricao+"</textarea>"+
+				                                "</div>"+
+				                            "</div>"+
+				                        "</div>"+
+				                    "</div>"+
+				                "<div class='form-actions'>"+
+				                    "<button type='submit' class='btn btn-blue'>Salvar Mudanças</button>"+
+				                "</div>"+
+	        				"</form>");
+	        }
+	})
 }

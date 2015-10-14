@@ -38,8 +38,12 @@ class Setor extends MX_Controller {
 	}
 	
 	public function buscar_setor($id){
-		$resultado=$this->setor_model->buscar_setor($id);
-		echo json_encode($resultado);
+		if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+			$resultado=$this->setor_model->buscar_setor($id);
+			echo json_encode($resultado);
+		}else{
+			redirect('admin/setor', 'refresh');
+		}
 	}
 	
 	public function editar_setor($id){

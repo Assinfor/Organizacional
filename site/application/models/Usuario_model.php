@@ -2,7 +2,7 @@
 class Usuario_model extends CI_Model{
 	function listar($id=null){
 		$this->db
-			->select('p.*, u.id as usuario_id, u.status, e.*, c.uf, c.nome as cidade, s.id as setor_id, pf.*, f.*')
+			->select('p.*, u.id as usuario_id, u.status, e.logradouro, e.bairro, e.numero, e.cidade_id, c.uf, c.nome as cidade, s.id as setor_id, pf.*, f.*')
 			->from('pessoa p')
 			->join('usuario u', 'u.pessoa_id = p.id', 'left')
 			->join('endereco e', 'p.id=e.pessoa_id', 'left')

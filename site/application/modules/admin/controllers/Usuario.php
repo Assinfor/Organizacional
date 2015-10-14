@@ -84,27 +84,34 @@ class Usuario extends MX_Controller {
 			redirect('admin/usuario', 'refresh');
 		}
 		}else{
-			$endereco = $this->input->post('endereco');
-			if($this->endereco_model->salvar($endereco, $id)){
-				$pessoa_fisica=$this->input->post('pessoa_fisica');
-				if($this->pessoafisica_model->salvar($pessoa_fisica, $id)){
-					$funcionario = $this->input->post('funcionario');
-					if($this->funcionario_model->salvar($funcionario, $id)){
-						$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
-						redirect('admin/usuario', 'refresh');
+			$pessoa['nome']=$this->input->post('nome');
+			$pessoa_id=$this->input->post('pessoa_id');
+			if($this->pessoa_model->salvar($pessoa, $pessoa_id)){
+				$endereco = $this->input->post('endereco');
+				if($this->endereco_model->salvar($endereco, $id)){
+					$pessoa_fisica=$this->input->post('pessoa_fisica');
+					if($this->pessoafisica_model->salvar($pessoa_fisica, $id)){
+						$funcionario = $this->input->post('funcionario');
+						if($this->funcionario_model->salvar($funcionario, $id)){
+							$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
+							redirect('admin/usuario', 'refresh');
+						}else{
+							$this->view->set_message("Erro ao salvar funcionário", "alert alert-error");
+							redirect('admin/usuario', 'refresh');
+						}
 					}else{
-						$this->view->set_message("Erro ao salvar funcionário", "alert alert-error");
+						$this->view->set_message("Erro ao salvar pessoa física", "alert alert-error");
 						redirect('admin/usuario', 'refresh');
 					}
 				}else{
-					$this->view->set_message("Erro ao salvar pessoa física", "alert alert-error");
+					$this->view->set_message("Erro ao salvar endereço", "alert alert-error");
 					redirect('admin/usuario', 'refresh');
 				}
-			}else{
-				$this->view->set_message("Erro ao salvar endereço", "alert alert-error");
-				redirect('admin/usuario', 'refresh');
-			}
+		}else{
+			$this->view->set_message("Erro ao salvar pessoa", "alert alert-error");
+			redirect('admin/empresa', 'refresh');
 		}
+	}
 	}
 	
 	public function deletar_usuario($id){
@@ -117,7 +124,11 @@ class Usuario extends MX_Controller {
 		}
 	}
 	public function buscar_usuario($id){
-		$resultado=$this->usuario_model->listar($id);
-		echo json_encode($resultado);
+		if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+			$resultado=$this->usuario_model->listar($id);
+			echo json_encode($resultado);
+		}else{
+			redirect('admin/usuario', 'refresh');
+		}
 	}
 }

@@ -6,4 +6,5 @@ class Gerente extends MX_Controller {
 		$this->data['template']="gerente";
 		$this->view->show_view($this->data);
 	}
+	
 }

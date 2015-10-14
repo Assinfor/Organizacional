@@ -14,7 +14,8 @@ class Empresa extends MX_Controller {
 		$this->data['regimes']=$this->regime_tributario_model->listar();
 		$this->view->show_view($this->data);
 	}
-	public function salvar_empresa(){
+	public function salvar_empresa($id=null){
+		if($id==null){
 		$pessoa['nome']=$this->input->post('nome');
 		if($pessoa_id=$this->pessoa_model->salvar($pessoa)){
 			$pessoa_juridica=$this->input->post('pessoa_juridica');
@@ -31,6 +32,30 @@ class Empresa extends MX_Controller {
 			}
 		}else{
 			$this->view->set_message("Erro ao salvar pessoa", "alert alert-error");
+			redirect('admin/empresa', 'refresh');
+		}
+		}else{
+			$pessoa['nome']=$this->input->post('nome');
+			if($this->pessoa_model->salvar($pessoa, $id)){
+				$pessoa_juridica=$this->input->post('pessoa_juridica');
+				if($this->pessoa_juridica_model->salvar($pessoa_juridica, $id)){
+					$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
+					redirect('admin/empresa', 'refresh');
+				}else{
+					$this->view->set_message("Erro ao salvar pessoa juridica", "alert alert-error");
+					redirect('admin/empresa', 'refresh');
+				}
+			}else{
+				$this->view->set_message("Erro ao salvar pessoa", "alert alert-error");
+				redirect('admin/empresa', 'refresh');
+			}
+		}
+	}
+	public function buscar_empresa($id){
+		if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+			$resultado=$this->pessoa_juridica_model->buscar_empresa($id);
+			echo json_encode($resultado);
+		}else{
 			redirect('admin/empresa', 'refresh');
 		}
 	}

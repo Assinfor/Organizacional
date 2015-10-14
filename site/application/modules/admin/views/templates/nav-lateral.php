@@ -30,6 +30,15 @@
 	<span>Setor</span>
 	</a>
 </li>
+<!------regime tributário----->
+<li class="">
+<span class="glow"></span>
+	<a href="<?php echo base_url();?>admin/regime_tributario" rel="tooltip" data-placement="right" data-original-title="regime tributário">
+	<!--<i class="icon-user icon-1x"></i>-->
+	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
+	<span>Regime Tributário</span>
+	</a>
+</li>
 <!------empresa----->
 <li class="">
 <span class="glow"></span>

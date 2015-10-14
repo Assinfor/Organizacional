@@ -9,11 +9,30 @@ class Pessoa_juridica_model extends CI_Model{
 		$query = $this->db->get_where();
 		return $query->result();
 	}
-	function salvar($pessoa_juridica){
-		if($this->db->insert('pessoa_juridica', $pessoa_juridica)){
-			return true;
+	function buscar_empresa($id){
+		$this->db
+		->select('p.*, pj.*, rt.nome as regime, rt.id as regime_id')
+		->from('pessoa_juridica pj')
+		->join('pessoa p', 'p.id=pj.pessoa_id', 'left')
+		->join('regime_tributario rt', 'rt.id=pj.regime_tributario_id', 'left')
+		->where('p.id =', $id);
+		$query = $this->db->get_where();
+		return $query->result();
+	}
+	function salvar($pessoa_juridica, $id=null){
+		if($id==null){
+			if($this->db->insert('pessoa_juridica', $pessoa_juridica)){
+				return true;
+			}else{
+				return false;
+			}
 		}else{
-			return false;
+			if($this->db->where('pessoa_id=',$id)
+					->update('pessoa_juridica', $pessoa_juridica)){
+						return true;
+			}else{
+				return false;
+			}
 		}
 	}
 }

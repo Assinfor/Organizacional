@@ -48,9 +48,9 @@
 							<td><?php echo $empresa->nome;?></td>
 							<td><?php echo $empresa->cnpj;?></td>
 							<td><?php echo $empresa->ie;?></td>
-							<td><?php echo $empresa->regime;?></td>
+							<td><?php echo $empresa->regime; ?></td>
 							<td align="center">
-                            	<a data-toggle="modal" href="#modal-form" onclick="" class="btn btn-gray btn-small">
+                            	<a data-toggle="modal" href="#modal-form" onclick="editar_empresa(<?php echo $empresa->id; ?>)" class="btn btn-gray btn-small">
                                 		<i class="icon-wrench"></i>
                                 </a>
                             	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>admin/empresa/deletar_empresa/<?php echo $empresa->id;?>')" class="btn btn-red btn-small">
@@ -78,19 +78,19 @@
                             <div class="control-group">
                                 <label class="control-label">CNPJ:</label>
                                 <div class="controls">
-                                    <input type="text" name="pessoa_juridica[cnpj]" autocomplete="off" class="senha" required/>
+                                    <input type="text" name="pessoa_juridica[cnpj]" class="cnpj" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">IE:</label>
                                 <div class="controls">
-                                     <input type="text" name="pessoa_juridica[ie]" required/>
+                                     <input type="text" name="pessoa_juridica[ie]" class="ie" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Regime Tributário:</label>
                                 <div class="controls">
-                                     <select name='pessoa_juridica[regime_tributario_id]' required/>
+                                     <select name='pessoa_juridica[regime_tributario_id]' id='regime-select' required/>
                                      <option value=''>Selecione um Regime</option>
                                      <?php foreach($regimes as $regime):?>
 									  <option value='<?php echo $regime->id ?>'><?php echo $regime->nome ?></option>

@@ -1,3 +1,4 @@
+<?php $setor=null; ?>
 <div class="main-content">
 <div class="content-fluid padding">
 <div class="box">
@@ -14,7 +15,6 @@
                     	</a></li>
 		</ul>
     	<!------CONTROL TABS END------->
-        
 	</div>
 	<div class="box-content padded">
 		<div class="tab-content">
@@ -150,7 +150,7 @@
                             <div id="telefones">
                             <div id="telefone-form-0" class="control-group">
                                 <div class="controls">
-                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" placeholder="XX" required/>
+                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" required/>
                                      <input type="text" name="telefone[]" class="tel-form" required/>
                                      <select name='tipo[]' required/>
 	                                     <option value=''>Selecione o Tipo de Telefone</option>
