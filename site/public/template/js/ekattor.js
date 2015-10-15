@@ -22688,7 +22688,7 @@ window.rangy = function () {
         if (v.initialized) return;
         var e, t = !1,
             n = !1;
-        u(document, "createRange") && (e = document.createRange(), c(e, i) && p(e, r) && (t = !0), e.detach());
+        u(document, "createRange") && (e = document.createRange(), c(e, i) && p(e, r) && (t = !0));
         var s = a(document, "body") ? document.body : document.getElementsByTagName("body")[0];
         s && u(s, "createTextRange") && (e = s.createTextRange(), d(e) && (n = !0)), !t && !n && m("Neither Range nor TextRange are implemented"), v.initialized = !0, v.features = {
             implementsDomRange: t,

@@ -67,7 +67,7 @@
                             <div class="control-group">
                                 <label class="control-label">Nome:</label>
                                 <div class="controls">
-                                    <input type="text" name="nome" required/>
+                                    <input type="text" name="nome" maxlength='60' required/>
                                 </div>
                             </div>
                             <div class="control-group">

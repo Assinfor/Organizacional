@@ -13,8 +13,8 @@ $("#adicionar-telefone").click(function(){
 	$countTel++;
     $("<div id='telefone-form-"+$countTel+"' class='control-group'>"+
 	    "<div class='controls'>"+
-	    	"<input id='ddd' type='text' name='ddd[]' class='ddd-form ddd-margin' required/>"+
-	         "<input type='text' name='telefone[]' class='tel-form tel-margin' required/>"+
+	    	"<input id='ddd' type='text' name='ddd[]' class='ddd-form ddd-margin' maxlength='3' required/>"+
+	         "<input type='text' name='telefone[]' class='tel-form tel-margin' maxlength='10' required/>"+
 	         "<select name='tipo[]'>"+
 	             "<option value=''>Selecione o Tipo de Telefone</option>"+
 	             "<option value='comercial'>Comercial</option>"+
@@ -30,7 +30,7 @@ $("#adicionar-email").click(function(){
 	$countEmail++
 	$("<div id='email-form-"+$countEmail+"' class='control-group'>"+
             "<div class='controls'>"+
-                 "<input type='email' name='email'  required/>"+
+                 "<input type='email' name='email' maxlength='90'  required/>"+
                  "<a onclick='deletarEmail("+$countEmail+");return false;'>Excluir</div>"+
             "</div>"+
         "</div>").appendTo("#emails");
@@ -67,25 +67,25 @@ function editar_usuario(id){
 			                "<label class='control-label' >Nome:</label>"+
 			                "<div class='controls'>"+
 			                	"<input type='text' name='pessoa_id' value='"+data[0].id+"' style='display:none'>"+
-			                    "<input type='text' name='nome' value='"+data[0].nome+"' required/>"+
+			                    "<input type='text' name='nome' value='"+data[0].nome+"' maxlength='60' required/>"+
 			                "</div>"+
 			            "</div>"+
 			            "<div class='control-group'>"+
 			                "<label class='control-label'>Rua:</label>"+
 			                "<div class='controls'>"+
-			                     "<input type='text' name='endereco[logradouro]' value='"+data[0].logradouro+"' required/>"+
+			                     "<input type='text' name='endereco[logradouro]' value='"+data[0].logradouro+"' maxlength='60' required/>"+
 			                "</div>"+
 			            "</div>"+
 			            "<div class='control-group'>"+
 			                "<label class='control-label'>Número:</label>"+
 			                "<div class='controls'>"+
-			                     "<input type='text' name='endereco[numero]' value='"+data[0].numero+"' required/>"+
+			                     "<input type='text' name='endereco[numero]' value='"+data[0].numero+"' maxlength='10' required/>"+
 			                "</div>"+
 			            "</div>"+
 			            "<div class='control-group'>"+
 			                "<label class='control-label'>Bairro:</label>"+
 			                "<div class='controls'>"+
-			                     "<input type='text' name='endereco[bairro]' value='"+data[0].bairro+"' required/>"+
+			                     "<input type='text' name='endereco[bairro]' value='"+data[0].bairro+"' maxlength='40' required/>"+
 			                "</div>"+
 		                "<div class='control-group'>"+ 
                             "<label class='control-label'>Cidade:</label>"+
@@ -95,27 +95,21 @@ function editar_usuario(id){
                             "<div class='control-group'>"+
 			                "<label class='control-label'>CPF:</label>"+
 			                "<div class='controls'>"+
-			                     "<input type='text' name='pessoa_fisica[cpf]' class='cpf' value='"+data[0].cpf+"' required/>"+
+			                     "<input type='text' name='pessoa_fisica[cpf]' class='cpf' value='"+data[0].cpf+"'  required/>"+
 			                "</div>"+
 			            "</div>"+
 			            "<div class='control-group'>"+
 			                "<label class='control-label'>RG:</label>"+
 			                "<div class='controls'>"+
-			                     "<input type='text' name='pessoa_fisica[rg]' value='"+data[0].rg+"' required/>"+
+			                     "<input type='text' name='pessoa_fisica[rg]' value='"+data[0].rg+"' maxlength='12' required/>"+
 			                "</div>"+
 			            "</div>"+
 			            "<div class='control-group'>"+
 			                "<label class='control-label'>Carteira de trabalho:</label>"+
 			                "<div class='controls'>"+
-			                     "<input type='text' name='funcionario[clt]' value='"+data[0].clt+"' required/>"+
+			                     "<input type='text' name='funcionario[clt]' value='"+data[0].clt+"' maxlength='15' required/>"+
 			                "</div>"+
 			           "</div>"+
-			            "<div class='control-group'>"+
-			                "<label class='control-label'>PIS:</label>"+
-			                "<div class='controls'>"+
-			                     "<input type='text' name='funcionario[pis]' value='"+data[0].pis+"' required/>"+
-			                "</div>"+
-			            "</div>"+
 			            "<div class='control-group'>"+
 			                "<label class='control-label'>Setor:</label>"+
 			                "<div class='controls' id='setor-mark'>"+
@@ -147,7 +141,7 @@ function editar_setor(id){
         						"<div class='control-group'>"+
 			                        "<label class='control-label'>Nome:</label>"+
 			                        "<div class='controls'>"+
-			                            "<input type='text' name='nome' value='"+data[0].nome+"' required/>"+
+			                            "<input type='text' name='nome' value='"+data[0].nome+"' maxlength='60' required/>"+
 			                        "</div>"+
 			                    "</div>"+
 			                    "<div class='control-group'>"+
@@ -182,19 +176,19 @@ function editar_empresa(id){
         						"<div class='control-group'>"+
 			                        "<label class='control-label'>Nome:</label>"+
 			                        "<div class='controls'>"+
-			                            "<input type='text' name='nome' value='"+data[0].nome+"' required/>"+
+			                            "<input type='text' name='nome' value='"+data[0].nome+"' maxlength='60' required/>"+
 			                        "</div>"+
 			                    "</div>"+
 			                    "<div class='control-group'>"+
 	                                "<label class='control-label'>CNPJ:</label>"+
 	                                "<div class='controls'>"+
-	                                    "<input type='text' name='pessoa_juridica[cnpj]' value='"+data[0].cnpj+"' required/>"+
+	                                    "<input type='text' name='pessoa_juridica[cnpj]' class='cnpj' value='"+data[0].cnpj+"' required/>"+
 	                                "</div>"+
 	                            "</div>"+
 	                            "<div class='control-group'>"+
 	                                "<label class='control-label'>IE:</label>"+
 	                                "<div class='controls'>"+
-	                                     "<input type='text' name='pessoa_juridica[ie]' value='"+data[0].ie+"' required/>"+
+	                                     "<input type='text' name='pessoa_juridica[ie]' class='ie' value='"+data[0].ie+"' required/>"+
 	                                "</div>"+
 	                            "</div>"+
 	                            "<div class='control-group'>"+
@@ -208,8 +202,42 @@ function editar_empresa(id){
         				"</form>");
         			$regime.val(data[0].regime_id);
                 	$regime.insertAfter('#regime-mark');
+                	$('.cnpj').mask("99.999.999/999-99", {placeholder:"0"});
+                	$('.ie').mask("99999999", {placeholder:"0"});
         }
 })
+}
+
+function modal_gerente(id){
+	var base_url='http://localhost/Organizacional/site/';
+	$('#modal-body').html('');
+	$('#modal-body').append("<form action='"+base_url+"admin/gerente/definir_gerente/"+id+"' method='post'>"+
+			"<div class='padded'>"+
+			"<div class='control-group'>"+
+        	"<label class='control-label'>Selecione o gerente:</label>"+
+            "<div class='controls'>"+
+            "<select name='gerente[funcionario_id]'>"+
+            "<option value='' id='mark-select'>Selecione um gerente</option>"+
+			"</select>"+
+					"</div>"+
+    			"</div>"+
+    			"</div>"+
+    			"<div class='form-actions'>"+
+                "<button type='submit' class='btn btn-blue'>Salvar Gerente</button>"+
+            "</div>"+
+    			"</form>");
+	$.ajax({
+        url: base_url+"admin/gerente/buscar_gerentes/"+id,
+        dataType: 'json',
+        type: "post",
+        success: function(data){
+			$.each(data,function(index, element){
+				$('#mark-select').after(
+						"<option value='"+element.id+"'>"+element.nome+"</option>"
+						);
+					})
+		        	}
+		        })
 }
 
 function editar_regime(id){
@@ -225,7 +253,7 @@ function editar_regime(id){
 	        						"<div class='control-group'>"+
 				                        "<label class='control-label'>Nome:</label>"+
 				                        "<div class='controls'>"+
-				                            "<input type='text' name='regime[nome]' value='"+data[0].nome+"' required/>"+
+				                            "<input type='text' name='regime[nome]' maxlength='40' value='"+data[0].nome+"' required/>"+
 				                        "</div>"+
 				                    "</div>"+
 				                    "<div class='control-group'>"+

@@ -72,32 +72,32 @@
                                 <label class="control-label" >Nome:</label>
                                 <div class="controls">
                                 	<input type="text" style="display:none">
-                                    <input type="text" name="nome" required/>
+                                    <input type="text" name="nome" maxlength="60" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Senha:</label>
                                 <div class="controls">
                                 	<input type="password" style="display:none">
-                                    <input type="password" name="senha" autocomplete="off" class="senha" required/>
+                                    <input type="password" name="senha" maxlength="45" autocomplete="off" class="senha" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Rua:</label>
                                 <div class="controls">
-                                     <input type="text" name="endereco[logradouro]" required/>
+                                     <input type="text" name="endereco[logradouro]" maxlength="60" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Número:</label>
                                 <div class="controls">
-                                     <input type="text" name="endereco[numero]" required/>
+                                     <input type="text" name="endereco[numero]" maxlength='10' required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Bairro:</label>
                                 <div class="controls">
-                                     <input type="text" name="endereco[bairro]" required/>
+                                     <input type="text" name="endereco[bairro]" maxlength=40' required/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -114,25 +114,19 @@
                             <div class="control-group">
                                 <label class="control-label">CPF:</label>
                                 <div class="controls">
-                                     <input type="text" name="pessoa_fisica[cpf]" class="cpf" required/>
+                                     <input type="text" name="pessoa_fisica[cpf]" class="cpf"  placeholder="000.000.000-00" required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">RG:</label>
                                 <div class="controls">
-                                     <input type="text" name="pessoa_fisica[rg]" required/>
+                                     <input type="text" name="pessoa_fisica[rg]" maxlength='12' required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">Carteira de trabalho:</label>
                                 <div class="controls">
-                                     <input type="text" name="funcionario[clt]" required/>
-                                </div>
-                            </div>
-                            <div class="control-group">
-                                <label class="control-label">PIS:</label>
-                                <div class="controls">
-                                     <input type="text" name="funcionario[pis]" required/>
+                                     <input type="text" name="funcionario[clt]" maxlength='15' required/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -150,8 +144,8 @@
                             <div id="telefones">
                             <div id="telefone-form-0" class="control-group">
                                 <div class="controls">
-                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" required/>
-                                     <input type="text" name="telefone[]" class="tel-form" required/>
+                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" maxlength='3' required/>
+                                     <input type="text" name="telefone[]" class="tel-form" maxlength='10' required/>
                                      <select name='tipo[]' required/>
 	                                     <option value=''>Selecione o Tipo de Telefone</option>
 	                                     <option value='comercial'>Comercial</option>
@@ -167,7 +161,7 @@
                             <div id="emails">
                             <div id="email-form-0" class="control-group">
                                 <div class="controls">
-                                     <input type="email" name="email[]" required/>
+                                     <input type="email" name="email[]" maxlength='90' required/>
                                 </div>
                             </div>
                             </div>

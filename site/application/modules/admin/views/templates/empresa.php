@@ -72,19 +72,19 @@
                                 <label class="control-label" >Nome:</label>
                                 <div class="controls">
                                 	<input type="text" style="display:none">
-                                    <input type="text" name="nome" required/>
+                                    <input type="text" name="nome" maxlength='60' required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">CNPJ:</label>
                                 <div class="controls">
-                                    <input type="text" name="pessoa_juridica[cnpj]" class="cnpj" required/>
+                                    <input type="text" name="pessoa_juridica[cnpj]" class="cnpj" placeholder='00.000.000/000-00' required/>
                                 </div>
                             </div>
                             <div class="control-group">
                                 <label class="control-label">IE:</label>
                                 <div class="controls">
-                                     <input type="text" name="pessoa_juridica[ie]" class="ie" required/>
+                                     <input type="text" name="pessoa_juridica[ie]" class="ie" placeholder='00000000' required/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -100,7 +100,7 @@
                             </div>
                   			<div class="control-group">
                                 <div class="controls">
-                                     <input type="checkbox" id="checkbox-matriz" name="filial"><p>Matriz</p>
+                                     <input type="checkbox" id="checkbox-matriz" name="filial"><p>Filial</p>
                                 </div>
                             </div>
                             <div class="control-group" id='matriz-select'>

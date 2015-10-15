@@ -14,7 +14,7 @@ class Funcionario_model extends CI_Model{
 				->where('u.id=',$id);
 			$query = $this->db->get_where();
 			$pessoa_id=$query->row();
-			if($this->db->where('pessoa_fisica_pessoa_id=',$pessoa_id->id)
+			if($this->db->where('pessoa_fisica_id=',$pessoa_id->id)
 					->update('funcionario', $funcionario)){
 						return true;
 			}else{

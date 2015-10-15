@@ -59,7 +59,7 @@ class Usuario extends MX_Controller {
 					);
 					if($this->usuario_model->salvar_usuario($usuario)){
 						$funcionario = $this->input->post('funcionario');
-						$funcionario['pessoa_fisica_pessoa_id']=$pessoa_id;
+						$funcionario['pessoa_fisica_id']=$pessoa_id;
 						if($this->funcionario_model->salvar($funcionario)){
 							$this->view->set_message("Usuário adicionado com sucesso", "alert alert-success");
 							redirect('admin/usuario', 'refresh');
