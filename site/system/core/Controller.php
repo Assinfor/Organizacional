@@ -63,10 +63,16 @@ class CI_Controller {
 	 *
 	 * @return	void
 	 */
+	var $user_data;
+	var $data;
+	
 	public function __construct()
 	{
 		self::$instance =& $this;
-
+		if(isset($_SESSION['user_data'])){
+			$this->user_data=$_SESSION['user_data'];
+			$this->data['user_data']=$this->user_data;
+		}
 		// Assign all the class objects that were instantiated by the
 		// bootstrap file (CodeIgniter.php) to local class variables
 		// so that CI can run as one big super object.

@@ -56,12 +56,12 @@ function editar_usuario(id){
 	var $setor = $('#setor-select').clone();
 	var base_url='http://localhost/Organizacional/site/';
 	$.ajax({
-        url: base_url+"admin/usuario/buscar_usuario/"+id,
+        url: base_url+"usuario/buscar_usuario/"+id,
         dataType: 'json',
         type: "post",
         success: function(data){
         	$('#modal-body').html('');
-        	$('#modal-body').append("<form action='"+base_url+"admin/usuario/salvar_usuario/"+id+"' method='post'>"+
+        	$('#modal-body').append("<form action='"+base_url+"usuario/salvar_usuario/"+id+"' method='post'>"+
         			"<div class='padded'>"+
 			            "<div class='control-group'>"+
 			                "<label class='control-label' >Nome:</label>"+
@@ -131,12 +131,12 @@ function editar_usuario(id){
 function editar_setor(id){
 	var base_url='http://localhost/Organizacional/site/';
 	$.ajax({
-        url: base_url+"admin/setor/buscar_setor/"+id,
+        url: base_url+"setor/buscar_setor/"+id,
         dataType: 'json',
         type: "post",
         success: function(data){
         			$('#modal-body').html('');
-        			$('#modal-body').append("<form action='"+base_url+"admin/setor/editar_setor/"+id+"' method='post'>"+
+        			$('#modal-body').append("<form action='"+base_url+"setor/editar_setor/"+id+"' method='post'>"+
         					"<div class='padded'>"+
         						"<div class='control-group'>"+
 			                        "<label class='control-label'>Nome:</label>"+
@@ -166,12 +166,12 @@ function editar_empresa(id){
 	var $regime = $('#regime-select').clone();
 	var base_url='http://localhost/Organizacional/site/';
 	$.ajax({
-        url: base_url+"admin/empresa/buscar_empresa/"+id,
+        url: base_url+"empresa/buscar_empresa/"+id,
         dataType: 'json',
         type: "post",
         success: function(data){
         			$('#modal-body').html('');
-        			$('#modal-body').append("<form action='"+base_url+"admin/empresa/salvar_empresa/"+id+"' method='post'>"+
+        			$('#modal-body').append("<form action='"+base_url+"empresa/salvar_empresa/"+id+"' method='post'>"+
         					"<div class='padded'>"+
         						"<div class='control-group'>"+
 			                        "<label class='control-label'>Nome:</label>"+
@@ -211,7 +211,7 @@ function editar_empresa(id){
 function modal_gerente(id){
 	var base_url='http://localhost/Organizacional/site/';
 	$('#modal-body').html('');
-	$('#modal-body').append("<form action='"+base_url+"admin/gerente/definir_gerente/"+id+"' method='post'>"+
+	$('#modal-body').append("<form action='"+base_url+"gerente/definir_gerente/"+id+"' method='post'>"+
 			"<div class='padded'>"+
 			"<div class='control-group'>"+
         	"<label class='control-label'>Selecione o gerente:</label>"+
@@ -227,7 +227,7 @@ function modal_gerente(id){
             "</div>"+
     			"</form>");
 	$.ajax({
-        url: base_url+"admin/gerente/buscar_gerentes/"+id,
+        url: base_url+"gerente/buscar_gerentes/"+id,
         dataType: 'json',
         type: "post",
         success: function(data){
@@ -243,12 +243,12 @@ function modal_gerente(id){
 function editar_regime(id){
 		var base_url='http://localhost/Organizacional/site/';
 		$.ajax({
-	        url: base_url+"admin/regime_tributario/buscar_regime/"+id,
+	        url: base_url+"regime_tributario/buscar_regime/"+id,
 	        dataType: 'json',
 	        type: "post",
 	        success: function(data){
 	        			$('#modal-body').html('');
-	        			$('#modal-body').append("<form action='"+base_url+"admin/regime_tributario/salvar_regime/"+id+"' method='post'>"+
+	        			$('#modal-body').append("<form action='"+base_url+"regime_tributario/salvar_regime/"+id+"' method='post'>"+
 	        					"<div class='padded'>"+
 	        						"<div class='control-group'>"+
 				                        "<label class='control-label'>Nome:</label>"+

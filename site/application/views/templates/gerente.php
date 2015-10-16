@@ -46,7 +46,7 @@
 							}
 							else {
 								?>
-								<a class='btn btn-danger' data-toggle='modal' href='#modal-delete' onclick="modal_delete('<?php echo base_url();?>admin/gerente/retirar_gerente/<?php echo $gerente->pessoa_id;?>')">Retirar gerente</a><br/>
+								<a class='btn btn-danger' data-toggle='modal' href='#modal-delete' onclick="modal_delete('<?php echo base_url();?>gerente/retirar_gerente/<?php echo $gerente->pessoa_id;?>')">Retirar gerente</a><br/>
 								<?php 
 							}
 								?>

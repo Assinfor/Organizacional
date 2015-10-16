@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Empresa extends MX_Controller {
+class Empresa extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('pessoa_model');
@@ -25,14 +25,14 @@ class Empresa extends MX_Controller {
 			}
 			if($this->pessoa_juridica_model->salvar($pessoa_juridica)){
 				$this->view->set_message("Empresa adicionada com sucesso", "alert alert-success");
-				redirect('admin/empresa', 'refresh');
+				redirect('empresa', 'refresh');
 			}else{
 				$this->view->set_message("Erro ao salvar pessoa juridica", "alert alert-error");
-				redirect('admin/empresa', 'refresh');
+				redirect('empresa', 'refresh');
 			}
 		}else{
 			$this->view->set_message("Erro ao salvar pessoa", "alert alert-error");
-			redirect('admin/empresa', 'refresh');
+			redirect('empresa', 'refresh');
 		}
 		}else{
 			$pessoa['nome']=$this->input->post('nome');
@@ -40,14 +40,14 @@ class Empresa extends MX_Controller {
 				$pessoa_juridica=$this->input->post('pessoa_juridica');
 				if($this->pessoa_juridica_model->salvar($pessoa_juridica, $id)){
 					$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
-					redirect('admin/empresa', 'refresh');
+					redirect('empresa', 'refresh');
 				}else{
 					$this->view->set_message("Erro ao salvar pessoa juridica", "alert alert-error");
-					redirect('admin/empresa', 'refresh');
+					redirect('empresa', 'refresh');
 				}
 			}else{
 				$this->view->set_message("Erro ao salvar pessoa", "alert alert-error");
-				redirect('admin/empresa', 'refresh');
+				redirect('empresa', 'refresh');
 			}
 		}
 	}
@@ -56,7 +56,7 @@ class Empresa extends MX_Controller {
 			$resultado=$this->pessoa_juridica_model->buscar_empresa($id);
 			echo json_encode($resultado);
 		}else{
-			redirect('admin/empresa', 'refresh');
+			redirect('empresa', 'refresh');
 		}
 	}
 }

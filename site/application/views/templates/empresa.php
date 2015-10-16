@@ -53,7 +53,7 @@
                             	<a data-toggle="modal" href="#modal-form" onclick="editar_empresa(<?php echo $empresa->id; ?>)" class="btn btn-gray btn-small">
                                 		<i class="icon-wrench"></i>
                                 </a>
-                            	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>admin/empresa/deletar_empresa/<?php echo $empresa->id;?>')" class="btn btn-red btn-small">
+                            	<a data-toggle="modal" href="#modal-delete" onclick="modal_delete('<?php echo base_url();?>empresa/deletar_empresa/<?php echo $empresa->id;?>')" class="btn btn-red btn-small">
                                 		<i class="icon-trash"></i> 
                                 </a>
         					</td>
@@ -66,7 +66,7 @@
             <!----CREATION FORM STARTS---->
 			<div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                	<?php echo form_open('admin/empresa/salvar_empresa' , array('class' => 'form-horizontal validatable','target'=>'_top'));?>
+                	<?php echo form_open('empresa/salvar_empresa' , array('class' => 'form-horizontal validatable','target'=>'_top'));?>
                         <div class="padded">
                             <div class="control-group">
                                 <label class="control-label" >Nome:</label>

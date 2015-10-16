@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Usuario extends MX_Controller {
+class Usuario extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('usuario_model');
@@ -62,26 +62,26 @@ class Usuario extends MX_Controller {
 						$funcionario['pessoa_fisica_id']=$pessoa_id;
 						if($this->funcionario_model->salvar($funcionario)){
 							$this->view->set_message("Usuário adicionado com sucesso", "alert alert-success");
-							redirect('admin/usuario', 'refresh');
+							redirect('usuario', 'refresh');
 						}else{
 							$this->view->set_message("Erro ao salvar funcionário", "alert alert-error");
-							redirect('admin/usuario', 'refresh');
+							redirect('usuario', 'refresh');
 						}
 					}else{
 						$this->view->set_message("Erro ao salvar usuário", "alert alert-error");
-						redirect('admin/usuario', 'refresh');
+						redirect('usuario', 'refresh');
 					}
 				}else{
 					$this->view->set_message("Erro ao salvar pessoa física", "alert alert-error");
-					redirect('admin/usuario', 'refresh');
+					redirect('usuario', 'refresh');
 				}
 			}else{
 				$this->view->set_message("Erro ao salvar endereço", "alert alert-error");
-				redirect('admin/usuario', 'refresh');
+				redirect('usuario', 'refresh');
 			}
 		}else{
 			$this->view->set_message("Erro ao salvar pessoa", "alert alert-error");
-			redirect('admin/usuario', 'refresh');
+			redirect('usuario', 'refresh');
 		}
 		}else{
 			$pessoa['nome']=$this->input->post('nome');
@@ -94,22 +94,22 @@ class Usuario extends MX_Controller {
 						$funcionario = $this->input->post('funcionario');
 						if($this->funcionario_model->salvar($funcionario, $id)){
 							$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
-							redirect('admin/usuario', 'refresh');
+							redirect('usuario', 'refresh');
 						}else{
 							$this->view->set_message("Erro ao salvar funcionário", "alert alert-error");
-							redirect('admin/usuario', 'refresh');
+							redirect('usuario', 'refresh');
 						}
 					}else{
 						$this->view->set_message("Erro ao salvar pessoa física", "alert alert-error");
-						redirect('admin/usuario', 'refresh');
+						redirect('usuario', 'refresh');
 					}
 				}else{
 					$this->view->set_message("Erro ao salvar endereço", "alert alert-error");
-					redirect('admin/usuario', 'refresh');
+					redirect('usuario', 'refresh');
 				}
 		}else{
 			$this->view->set_message("Erro ao salvar pessoa", "alert alert-error");
-			redirect('admin/empresa', 'refresh');
+			redirect('empresa', 'refresh');
 		}
 	}
 	}
@@ -117,10 +117,10 @@ class Usuario extends MX_Controller {
 	public function deletar_usuario($id){
 		if($this->usuario_model->deletar_usuario($id)){
 			$this->view->set_message("Usuário deletado com sucesso", "alert alert-success");
-			redirect('admin/usuario', 'refresh');
+			redirect('usuario', 'refresh');
 		}else{
 			$this->view->set_message("Erro ao deletar usuário", "alert alert-error");
-			redirect('admin/usuario', 'refresh');
+			redirect('usuario', 'refresh');
 		}
 	}
 	public function buscar_usuario($id){
@@ -128,7 +128,7 @@ class Usuario extends MX_Controller {
 			$resultado=$this->usuario_model->listar($id);
 			echo json_encode($resultado);
 		}else{
-			redirect('admin/usuario', 'refresh');
+			redirect('usuario', 'refresh');
 		}
 	}
 }

@@ -15,7 +15,7 @@
 <!------usuário----->
 <li class="">
 <span class="glow"></span>
-	<a href="<?php echo base_url();?>admin/usuario" rel="tooltip" data-placement="right" data-original-title="usuário">
+	<a href="<?php echo base_url();?>usuario" rel="tooltip" data-placement="right" data-original-title="usuário">
 	<!--<i class="icon-user icon-1x"></i>-->
 	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
 	<span>Usuário</span>
@@ -24,7 +24,7 @@
 <!------setor----->
 <li class="">
 <span class="glow"></span>
-	<a href="<?php echo base_url();?>admin/setor" rel="tooltip" data-placement="right" data-original-title="setor">
+	<a href="<?php echo base_url();?>setor" rel="tooltip" data-placement="right" data-original-title="setor">
 	<!--<i class="icon-user icon-1x"></i>-->
 	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
 	<span>Setor</span>
@@ -33,7 +33,7 @@
 <!------regime tributário----->
 <li class="">
 <span class="glow"></span>
-	<a href="<?php echo base_url();?>admin/regime_tributario" rel="tooltip" data-placement="right" data-original-title="regime tributário">
+	<a href="<?php echo base_url();?>regime_tributario" rel="tooltip" data-placement="right" data-original-title="regime tributário">
 	<!--<i class="icon-user icon-1x"></i>-->
 	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
 	<span>Regime Tributário</span>
@@ -42,7 +42,7 @@
 <!------empresa----->
 <li class="">
 <span class="glow"></span>
-	<a href="<?php echo base_url();?>admin/empresa" rel="tooltip" data-placement="right" data-original-title="empresa">
+	<a href="<?php echo base_url();?>empresa" rel="tooltip" data-placement="right" data-original-title="empresa">
 	<!--<i class="icon-user icon-1x"></i>-->
 	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
 	<span>Empresa</span>
@@ -51,7 +51,7 @@
 <!------gerente----->
 <li class="">
 <span class="glow"></span>
-	<a href="<?php echo base_url();?>admin/gerente" rel="tooltip" data-placement="right" data-original-title="gerente">
+	<a href="<?php echo base_url();?>gerente" rel="tooltip" data-placement="right" data-original-title="gerente">
 	<!--<i class="icon-user icon-1x"></i>-->
 	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
 	<span>Gerente</span>

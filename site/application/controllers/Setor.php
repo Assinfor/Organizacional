@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Setor extends MX_Controller {
+class Setor extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('setor_model');
@@ -20,20 +20,20 @@ class Setor extends MX_Controller {
 		);
 		if($this->setor_model->salvar($setor)){
 			$this->view->set_message("Setor adicionado com sucesso", "alert alert-success");
-			redirect('admin/setor', 'refresh');
+			redirect('setor', 'refresh');
 		}else{
 			$this->view->set_message("Erro ao adicionar", "alert alert-error");
-			redirect('admin/setor', 'refresh');
+			redirect('setor', 'refresh');
 		}
 	}
 	
 	public function deletar_setor($id){
 		if($this->setor_model->deletar_setor($id)){
 			$this->view->set_message("Setor deletado com sucesso", "alert alert-success");
-			redirect('admin/setor', 'refresh');
+			redirect('setor', 'refresh');
 		}else{
 			$this->view->set_message("Erro ao deletar setor", "alert alert-error");
-			redirect('admin/setor', 'refresh');
+			redirect('setor', 'refresh');
 		}
 	}
 	
@@ -42,7 +42,7 @@ class Setor extends MX_Controller {
 			$resultado=$this->setor_model->buscar_setor($id);
 			echo json_encode($resultado);
 		}else{
-			redirect('admin/setor', 'refresh');
+			redirect('setor', 'refresh');
 		}
 	}
 	
@@ -53,10 +53,10 @@ class Setor extends MX_Controller {
 		);
 		if($this->setor_model->editar($setor, $id)){
 			$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
-			redirect('admin/setor', 'refresh');
+			redirect('setor', 'refresh');
 		}else{
 			$this->view->set_message("Ocorreu um erro ao salvar mudanças", "alert alert-error");
-			redirect('admin/setor', 'refresh');
+			redirect('setor', 'refresh');
 		}
 		
 	}

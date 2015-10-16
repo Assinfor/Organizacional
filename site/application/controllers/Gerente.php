@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Gerente extends MX_Controller {
+class Gerente extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('gerente_model');
@@ -19,10 +19,10 @@ class Gerente extends MX_Controller {
 		);
 		if($this->gerente_model->retirar($pessoa_id, $gerente)){
 			$this->view->set_message("Gerente retirado com sucesso", "alert alert-success");
-			redirect('admin/gerente', 'refresh');
+			redirect('gerente', 'refresh');
 		}else{
 			$this->view->set_message("Erro ao executar ação", "alert alert-error");
-			redirect('admin/gerente', 'refresh');
+			redirect('gerente', 'refresh');
 		}
 	}
 	
@@ -31,7 +31,7 @@ class Gerente extends MX_Controller {
 			$funcionarios=$this->gerente_model->buscar_gerentes($id);
 			echo json_encode($funcionarios);
 		}else{
-			redirect('admin/gerente', 'refresh');
+			redirect('gerente', 'refresh');
 		}
 	}
 	
@@ -41,10 +41,10 @@ class Gerente extends MX_Controller {
 		$gerente['data_inicio']=date("Y-m-d");
 		if($this->gerente_model->definir($gerente)){
 			$this->view->set_message("Gerente definido com sucesso", "alert alert-success");
-			redirect('admin/gerente', 'refresh');
+			redirect('gerente', 'refresh');
 		}else{
 			$this->view->set_message("Erro ao executar ação", "alert alert-error");
-			redirect('admin/gerente', 'refresh');
+			redirect('gerente', 'refresh');
 		}
 	}
 	
