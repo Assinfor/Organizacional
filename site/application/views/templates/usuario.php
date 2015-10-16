@@ -1,14 +1,15 @@
+
 <div class="main-content">
 <div class="content-fluid padding">
 <div class="box">
 	<div class="box-header">
     	<!------CONTROL TABS START------->
 		<ul class="nav nav-tabs nav-tabs-left">
-			<li class="active">
+			<li id="ver" class="active">
             	<a href="#list" data-toggle="tab"><i class="icon-align-justify"></i> 
 					Usuários
                     	</a></li>
-			<li>
+			<li id="editar">
             	<a href="#add" data-toggle="tab"><i class="icon-plus"></i>
 					Adicionar usuário
                     	</a></li>
@@ -65,7 +66,7 @@
             <!----CREATION FORM STARTS---->
 			<div class="tab-pane box" id="add" style="padding: 5px">
                 <div class="box-content">
-                	<?php echo form_open('usuario/salvar_usuario' , array('class' => 'form-horizontal validatable','target'=>'_top'));?>
+                	<?php echo form_open('usuario/salvar_usuario' , array('id' => 'form', 'class' => 'form-horizontal validatable','target'=>'_top'));?>
                         <div class="padded">
                             <div class="control-group">
                                 <label class="control-label" >Nome:</label>
@@ -78,7 +79,7 @@
                                 <label class="control-label">Senha:</label>
                                 <div class="controls">
                                 	<input type="password" style="display:none">
-                                    <input type="password" name="senha" maxlength="45" autocomplete="off" class="senha" required/>
+                                    <input type="text" name="senha" maxlength="45" id="senha" autocomplete="off" class="senha" required/>
                                 </div>
                             </div>
                             <div class="control-group">
@@ -160,7 +161,7 @@
                             <div id="emails">
                             <div id="email-form-0" class="control-group">
                                 <div class="controls">
-                                     <input type="email" name="email[]" maxlength='90' required/>
+                                     <input type="email" name="email[]" maxlength='90' class='email' required/>
                                 </div>
                             </div>
                             </div>
@@ -178,3 +179,17 @@
 </div
 </div>
 </div>
+<?php 
+if(isset($_SESSION['editar'])){
+	?>
+	<script>
+		$("#ver").removeClass('active');
+		$("#list").removeClass('active');
+		$("#editar").addClass('active');
+		$("#add").addClass('active');
+		$('html, body').animate({scrollTop: 0},'fast');
+	</script>
+	<?php 
+	unset($_SESSION['editar']);
+}
+?>

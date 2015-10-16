@@ -30,6 +30,14 @@
 	margin-left:10px;
 }
 
+.aviso-positivo{
+	color:green;
+}
+
+.aviso-negativo{
+	color:red;
+}
+
 .google_map{
 	width: 350px;
 	height: 300px;

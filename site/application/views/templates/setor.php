@@ -30,6 +30,7 @@
                         </div>
                     </div>
                 </center>
+                <div  id="table-responsive">
                 <table cellpadding="0" cellspacing="0" border="0" class="dTable responsive">
                 	<thead>
                 		<tr>
@@ -57,6 +58,7 @@
                         <?php endforeach;?>
                     </tbody>
                 </table>
+                </div>
 			</div>
             <!----TABLE LISTING ENDS--->
             <!----CREATION FORM STARTS---->

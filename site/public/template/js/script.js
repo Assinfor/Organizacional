@@ -9,6 +9,7 @@ $("#checkbox-matriz").click(function(){
 		   $("#matriz-select").css("display", "none");
 		}
 })
+
 $("#adicionar-telefone").click(function(){
 	$countTel++;
     $("<div id='telefone-form-"+$countTel+"' class='control-group'>"+
@@ -26,11 +27,15 @@ $("#adicionar-telefone").click(function(){
 	"</div>").appendTo("#telefones");
 })
 
+/*$("#form").submit(function(e){
+                e.preventDefault();
+            });*/
+
 $("#adicionar-email").click(function(){
 	$countEmail++
 	$("<div id='email-form-"+$countEmail+"' class='control-group'>"+
             "<div class='controls'>"+
-                 "<input type='email' name='email' maxlength='90'  required/>"+
+                 "<input type='email' name='email[]' maxlength='90' class='email' required/>"+
                  "<a onclick='deletarEmail("+$countEmail+");return false;'>Excluir</div>"+
             "</div>"+
         "</div>").appendTo("#emails");
@@ -135,6 +140,7 @@ function editar_setor(id){
         dataType: 'json',
         type: "post",
         success: function(data){
+        	$.getScript(base_url+"public/template/js/ekattor.js");
         			$('#modal-body').html('');
         			$('#modal-body').append("<form action='"+base_url+"setor/editar_setor/"+id+"' method='post'>"+
         					"<div class='padded'>"+

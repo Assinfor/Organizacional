@@ -7,4 +7,11 @@ class Email_model extends CI_Model{
 			return false;
 		}
 	}
+	function listar(){
+		$this->db
+		->select('*')
+		->from('email');
+		$query = $this->db->get_where();
+		return $query->result();
+	}
 }
