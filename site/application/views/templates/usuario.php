@@ -35,6 +35,7 @@
                 		<tr>
                     		<th><div>#</div></th>
                     		<th><div>Nome</div></th>
+                    		<th><div>Setor</div></th>
                     		<th><div>Rua</div></th>
                     		<th><div>Número</div></th>
                     		<th><div>Cidade</div></th>
@@ -46,6 +47,7 @@
                         <tr>
                             <td><?php echo $count++;?></td>
 							<td><?php echo $usuario->nome;?></td>
+							<td><?php echo $usuario->setor;?></td>
 							<td><?php echo $usuario->logradouro;?></td>
 							<td><?php echo $usuario->numero;?></td>
 							<td><?php echo $usuario->cidade;?></td>

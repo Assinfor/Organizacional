@@ -14,4 +14,16 @@ class Email_model extends CI_Model{
 		$query = $this->db->get_where();
 		return $query->result();
 	}
+	
+	function buscar($id){
+		$this->db
+		->select('*')
+		->from('email')
+		->where('pessoa_id =', $id);
+		$query = $this->db->get_where();
+		return $query->result();
+	}
+	function deletar($id){
+		$this->db->delete('email', array('id' => $id));
+	}
 }

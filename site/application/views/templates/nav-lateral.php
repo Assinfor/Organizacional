@@ -12,10 +12,19 @@
 	</div>
 	<br />
 	<ul class="nav nav-collapse collapse nav-collapse-primary">
+<!------tarefa----->
+<li class="">
+<span class="glow"></span>
+	<a href="<?php echo base_url();?>tarefa" rel="tooltip" data-placement="right" data-original-title="tarefa">
+	<!--<i class="icon-user icon-1x"></i>-->
+	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
+	<span>Tarefa</span>
+	</a>
+</li>
 <!------usuário----->
 <li class="">
 <span class="glow"></span>
-	<a href="<?php echo base_url();?>usuario" rel="tooltip" data-placement="right" data-original-title="usuário">
+	<a href="<?php echo base_url();?>usuario" rel="tooltip" data-placement="right" data-original-title="Cadastrar, editar e excluir usuários.">
 	<!--<i class="icon-user icon-1x"></i>-->
 	<img src="<?php echo base_url();?>public/template/images/icons/user.png" />
 	<span>Usuário</span>

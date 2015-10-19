@@ -1,3 +1,4 @@
+emailTotal=0;
 $(document).ready(function(){
 	var $countTel = 0;
 	var $countEmail = 0;
@@ -56,7 +57,91 @@ function modal_delete(param1)
 	document.getElementById('delete_link').href = param1;
 }
 
+function deletarTelefoneEdit(valor, ddd, numero){
+	$("#ddd-"+valor).hide();
+	$("#telefone-"+valor).hide();
+	$("#excluir-link-"+valor).hide();
+	$("<p id='mensagem-"+valor+"'>Numero "+ddd+"-"+numero+" será deletado</p><a id='restaurar-link-"+valor+"' onclick='desfazerDeletarTel("+valor+");return false;'>Desfazer</a>").insertAfter("#telefone-"+valor);
+	$("#id-tel-"+valor).attr('name','tel-del[]');
+}
+
+function deletarEmailEdit(valor, email){
+	emailTotal--;
+	console.log(emailTotal);
+	if(emailTotal==1){
+			$(".link-excluir-email").hide();
+		}
+	if(email!=null){
+		$("#email-"+valor).hide();
+		$("#excluir-link-email-"+valor).remove();
+		$("<p id='mensagem-email-"+valor+"'>E-mail "+email+" será deletado</p><a id='restaurar-link-email-"+valor+"' onclick='desfazerDeletarEmail("+valor+","+email+");return false;'>Desfazer</a>").insertAfter("#email-"+valor);
+		$("#id-email-"+valor).attr('name','email-del[]');
+	}else{
+		$("#email-"+valor).remove();
+		$("#excluir-link-email-"+valor).remove();
+	}
+}
+
+function desfazerDeletarEmail(valor, email){
+	emailTotal++;
+	$(".link-excluir-email").show();
+	$("#email-"+valor).show();
+	$("<a id='excluir-link-email-"+valor+"' class='link-excluir-email' onclick='deletarEmailEdit("+valor+","+email+");return false;'>Excluir</a>").insertAfter('#email-'+valor);
+	$("#mensagem-email-"+valor).remove();
+	$("#restaurar-link-email-"+valor).remove();
+}
+
+function desfazerDeletarTel(valor){
+	$("#ddd-"+valor).show();
+	$("#telefone-"+valor).show();
+	$("#excluir-link-"+valor).show();
+	$("#mensagem-"+valor).remove();
+	$("#restaurar-link-"+valor).remove();
+	$("#id-tel-"+valor).attr('name','id-tel[]');
+}
+
+function adicionarEdit(countTel){
+    $("<div id='telefone-mark-"+(countTel+1)+"'>"+
+    		"<div id='telefone-form-"+countTel+"' class='control-group'>"+
+	    "<div class='controls'>"+
+	    	"<input id='ddd' type='text' name='ddd[]' class='ddd-form ddd-margin' maxlength='3' required/>"+
+	         "<input type='text' name='telefone[]' class='tel-form tel-margin' maxlength='10' required/>"+
+	         "<select name='tipo[]'>"+
+	             "<option value=''>Selecione o Tipo de Telefone</option>"+
+	             "<option value='comercial'>Comercial</option>"+
+	             "<option value='residencial'>Residencial</option>"+
+				 "<option value='celular'>Celular</option>"+
+			"</select>"+
+			"<a onclick='deletarTelefone("+countTel+");return false;'>Excluir</div>"+
+	    "</div>"+
+	"</div>"+
+	"</div>").insertAfter('#telefone-mark-'+countTel);
+    countTel++;
+    $("#add-telefone").remove();
+    $("#adicionar-telefone").remove();
+    $("<a id='adicionar-telefone' onclick='adicionarEdit("+countTel+");return false;'>Adicionar outro telefone</a>").insertAfter('#telefone-mark-'+countTel)
+}
+
+function adicionarEmailEdit(counterEmail){
+	emailTotal++;
+	$(".link-excluir-email").show();
+    $("<div id='email-mark-"+(counterEmail+1)+"'>"+
+    		"<div class='controls'>"+
+            "<input id='email-"+counterEmail+"' type='email' name='email[]' maxlength='90' class='email' required/>"+
+            "<a id='excluir-link-email-"+counterEmail+"' class='link-excluir-email' onclick='deletarEmailEdit("+counterEmail+");return false;'>Excluir</a>"+
+            "</div>"+
+ 		    "</div>"+
+	"</div>").insertAfter('#email-mark-'+counterEmail);
+    counterEmail++;
+    $("#add-email").remove();
+    $("#adicionar-email").remove();
+    $("<a id='adicionar-email' onclick='adicionarEmailEdit("+counterEmail+");return false;'>Adicionar outro e-mail</a>").insertAfter('#email-mark-'+counterEmail)
+}
+
 function editar_usuario(id){
+	emailTotal=0;
+	var counterTel=0;
+	var counterEmail=0;
 	var $cidade = $('#cidade-select').clone();
 	var $setor = $('#setor-select').clone();
 	var base_url='http://localhost/Organizacional/site/';
@@ -65,6 +150,7 @@ function editar_usuario(id){
         dataType: 'json',
         type: "post",
         success: function(data){
+        	var pessoa=data[0].id;
         	$('#modal-body').html('');
         	$('#modal-body').append("<form action='"+base_url+"usuario/salvar_usuario/"+id+"' method='post'>"+
         			"<div class='padded'>"+
@@ -115,22 +201,72 @@ function editar_usuario(id){
 			                     "<input type='text' name='funcionario[clt]' value='"+data[0].clt+"' maxlength='15' required/>"+
 			                "</div>"+
 			           "</div>"+
-			            "<div class='control-group'>"+
+			            "<div class='control-group' id='telefone-label-mark'>"+
 			                "<label class='control-label'>Setor:</label>"+
 			                "<div class='controls' id='setor-mark'>"+
 			                "</div>"+
 			            "</div>"+
+			            "</div>"+
+				        "<div id=telefone-edit>"+
+				        "</div>"+
+				        "<div id='email-edit'>"+
+				        "</div>"+
 			            "<div class='form-actions'>"+
 				            "<button type='submit' class='btn btn-blue'>Salvar Alterações</button>"+
-				        "</div>"+
 				    "</form>");
+		        	 $.ajax({
+		                 url: base_url+"usuario/buscar_telefones/"+pessoa,
+		                 dataType: 'json',
+		                 type: "post",
+		                 success: function(data){
+		                	 $("<label id='telefone-mark-0'>Telefones:</label>").appendTo('#telefone-edit');
+		                 	$.each(data,function(index, element){
+		                 		$("<div id='telefone-mark-"+(counterTel+1)+"'>"+
+		                 				"<div id='telefone-form-"+counterTel+"' class='control-group'>"+
+		                 			    "<div class='controls'>"+
+		                 			    "<input id='id-tel-"+counterTel+"' name='id-tel[]' type='hidden' value='"+element.id+"'>"+
+		                 		    	"<input id='ddd-"+counterTel+"' type='text' name='ddd[]' class='ddd-form ddd-margin' value='"+element.ddd+"' maxlength='3' disabled/>"+
+		                 		         "<input id='telefone-"+counterTel+"'type='text' name='telefone[]' class='tel-form tel-margin' maxlength='10' value='"+element.numero+"' disabled/>"+
+		                 				"<a id='excluir-link-"+counterTel+"' onclick='deletarTelefoneEdit("+counterTel+","+element.ddd+","+element.numero+");return false;'>Excluir</a>"+
+		                 		    "</div>"+
+		                 		"</div>").insertAfter('#telefone-mark-'+counterTel);
+		                 		counterTel++;
+		                 		
+		                 	});
+		                 	$("<a id='add-telefone' onclick='adicionarEdit("+counterTel+");return false;'>Adicionar outro telefone</a>").insertAfter('#telefone-mark-'+counterTel);
+		                 	}
+		             });
+		        	 $.ajax({
+		                 url: base_url+"usuario/buscar_emails/"+pessoa,
+		                 dataType: 'json',
+		                 type: "post",
+		                 success: function(data){
+		                	 $("<label id='email-mark-0'>E-mails:</label>").insertAfter('#telefone-label-mark');
+		                	 $.each(data,function(index, element){
+		                		 $("<div id='email-mark-"+(counterEmail+1)+"'>"+
+		                				"<div class='controls'>"+
+		                				"<input id='id-email-"+counterEmail+"' name='id-email[]' type='hidden' value='"+element.id+"'>"+
+		                                "<input id='email-"+counterEmail+"' type='email' name='email[]' maxlength='90' class='email' value='"+element.email+"' disabled/>"+
+		                                "<a id='excluir-link-email-"+counterEmail+"' class='link-excluir-email' onclick='deletarEmailEdit("+counterEmail+","+element.id+");return false;'>Excluir</a>"+
+		                                "</div>"+
+			                 		    "</div>"+
+			                 		"</div>").insertAfter('#email-mark-'+counterEmail);
+			                 		counterEmail++;
+			                 		emailTotal++;
+		                	 });
+		                	 if(counterEmail==1){
+		                 			$('.link-excluir-email').hide();
+		                 		}
+		                	 $("<a id='add-email' onclick='adicionarEmailEdit("+counterEmail+");return false;'>Adicionar outro e-mail</a>").insertAfter('#email-mark-'+counterEmail);
+		                 }
+		        	 });
         	$setor.val(data[0].setor_id);
         	$setor.insertAfter('#setor-mark');
         	$cidade.val(data[0].cidade_id);
         	$cidade.insertAfter('#cidade-mark');
         	$('.cpf').mask("999.999.999-99", {placeholder:"0"});
         }
-})
+});
 }
 
 function editar_setor(id){
@@ -153,11 +289,7 @@ function editar_setor(id){
 			                    "<div class='control-group'>"+
 			                        "<label class='control-label'>Descrição:</label>"+
 			                        "<div class='controls'>"+
-			                            "<div class='box closable-chat-box'>"+ 
-			                                "<div class='chat-message-box'>"+
-			                                        "<textarea name='descricao' id='ttt' rows='5'>"+data[0].descricao+"</textarea>"+
-			                                "</div>"+
-			                            "</div>"+
+			                            "<textarea name='descricao' id='ttt' rows='5'>"+data[0].descricao+"</textarea>"+
 			                        "</div>"+
 			                    "</div>"+
 			                "<div class='form-actions'>"+
@@ -265,11 +397,7 @@ function editar_regime(id){
 				                    "<div class='control-group'>"+
 				                        "<label class='control-label'>Descrição:</label>"+
 				                        "<div class='controls'>"+
-				                            "<div class='box closable-chat-box'>"+ 
-				                                "<div class='chat-message-box'>"+
-				                                        "<textarea name='regime[descricao]' id='ttt' rows='5'>"+data[0].descricao+"</textarea>"+
-				                                "</div>"+
-				                            "</div>"+
+				                            "<textarea name='regime[descricao]' id='ttt' rows='5'>"+data[0].descricao+"</textarea>"+
 				                        "</div>"+
 				                    "</div>"+
 				                "<div class='form-actions'>"+

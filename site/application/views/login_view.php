@@ -6,9 +6,26 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
 <link href="<?php echo base_url();?>public/template/css/ekattor.css" media="screen" rel="stylesheet" type="text/css" />
-<script src="<?php echo base_url();?>template/js/ekattor.js" type="text/javascript"></script>
-        <title>Login</title>
+<script src="<?php echo base_url();?>public/template/js/ekattor.js" type="text/javascript"></script>		
+<title>Login</title>
     </head>
+    <?php 
+    if(isset($_SESSION['messages'])){
+    	echo "<div id='messages'>";
+    	foreach($_SESSION['messages'] as $message){
+    		echo "<div class='".$message['class']."'>";
+    		echo $message['message'];
+    		echo "</div>";
+    	}
+    	echo "</div>";
+    	?>
+    	<script>
+    		setTimeout(function() {
+    		$('#messages').fadeOut(700);}, 5000);
+    	</script>
+    	<?php 
+    	unset($_SESSION['messages']);
+    }?>
 	<body>
         <div id="main_body">
             <div class="navbar navbar-top navbar-inverse">

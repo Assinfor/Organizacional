@@ -73,11 +73,7 @@
                             <div class="control-group">
                                 <label class="control-label">Descrição:</label>
                                 <div class="controls">
-                                    <div class="box closable-chat-box"> 
-                                        <div class="chat-message-box">
-                                                <textarea name="regime[descricao]" id="ttt" rows="5"></textarea>
-                                        </div>
-                                    </div>
+                                        <textarea name="regime[descricao]" id="ttt" rows="5"></textarea>
                                 </div>
                             </div>
                         <div class="form-actions">

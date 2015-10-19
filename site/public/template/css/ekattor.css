@@ -38,6 +38,11 @@
 	color:red;
 }
 
+#ttt{
+	resize:none;
+	width:500px;
+}
+
 .google_map{
 	width: 350px;
 	height: 300px;

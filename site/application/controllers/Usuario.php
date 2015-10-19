@@ -104,6 +104,26 @@ class Usuario extends CI_Controller {
 					echo '<script language="javascript">history.go(-1);</script>';
 				}
 		}else{
+			if(isset($_POST['email'])){
+				$emailregistrado=0;
+				$emails = $this->input->post('email');
+				$regemails=$this->email_model->listar();
+				foreach($regemails as $regemail){
+					foreach($emails as $email){
+						if($regemail->email==$email){
+							$emailregistrado++;
+						}
+					}
+				}
+				if($emailregistrado>0){
+					if($emailregistrado==1){
+						$this->view->set_message("Um e-mail digitado já está no banco de dados", "alert alert-error");
+					}else{
+						$this->view->set_message($emailregistrado." e-mails digitados já estão no banco de dados", "alert alert-error");
+					}
+					redirect('usuario', 'refresh');
+				}
+			}
 			$pessoa['nome']=$this->input->post('nome');
 			$pessoa_id=$this->input->post('pessoa_id');
 			if($this->pessoa_model->salvar($pessoa, $pessoa_id)){
@@ -113,6 +133,42 @@ class Usuario extends CI_Controller {
 					if($this->pessoafisica_model->salvar($pessoa_fisica, $id)){
 						$funcionario = $this->input->post('funcionario');
 						if($this->funcionario_model->salvar($funcionario, $id)){
+							if(isset($_POST['tel-del'])){
+								$telefones=$this->input->post('tel-del[]');
+								foreach($telefones as $telefone){
+									$this->telefone_model->deletar($telefone);
+								}
+							}
+							if(isset($_POST['ddd'])){
+								$ddd = $this->input->post('ddd');
+								$numero = $this->input->post('telefone');
+								$tipo = $this->input->post('tipo');
+								foreach($ddd as $key=>$v){
+									$telefone = array(
+											'pessoa_id' => $pessoa_id,
+											'ddd' => $v,
+											'numero' => $numero[$key],
+											'tipo'	=> $tipo[$key]
+									);
+									$this->telefone_model->salvar($telefone);
+								}
+							}
+							if(isset($_POST['email-del'])){
+								$emails=$this->input->post('email-del[]');
+								foreach($emails as $email){
+									$this->email_model->deletar($email);
+								}
+							}
+							if(isset($_POST['email'])){
+								$emails = $this->input->post('email');
+								foreach($emails as $email){
+									$email = array(
+											'pessoa_id' => $pessoa_id,
+											'email' => $email
+									);
+									$this->email_model->salvar($email);
+								}
+							}
 							$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
 							redirect('usuario', 'refresh');
 						}else{
@@ -146,6 +202,24 @@ class Usuario extends CI_Controller {
 	public function buscar_usuario($id){
 		if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
 			$resultado=$this->usuario_model->listar($id);
+			echo json_encode($resultado);
+		}else{
+			redirect('usuario', 'refresh');
+		}
+	}
+	
+	public function buscar_telefones($id){
+		if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+			$resultado=$this->telefone_model->buscar($id);
+			echo json_encode($resultado);
+		}else{
+			redirect('usuario', 'refresh');
+		}
+	}
+	
+	public function buscar_emails($id){
+		if( isset( $_SERVER['HTTP_X_REQUESTED_WITH'] ) && ( $_SERVER['HTTP_X_REQUESTED_WITH'] == 'XMLHttpRequest' ) ){
+			$resultado=$this->email_model->buscar($id);
 			echo json_encode($resultado);
 		}else{
 			redirect('usuario', 'refresh');
