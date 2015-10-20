@@ -102,12 +102,14 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                            <label class="control-label">Periodicidade:</label>
                                 <div class="controls" id="tarefa-radio">
                                      <input type="radio" name="periodo" id="radio-diaria" value="diaria">Diaria
                                      <input type="radio" name="periodo" id="radio-mensal" value="mensal">Mensal
                                      <input type="radio" name="periodo" id="radio-quinzenal" value="quinzenal">Quinzenal
                                      <input type="radio" name="periodo" id="radio-semestral" value="semestral">Semestral
                                      <input type="radio" name="periodo" id="radio-anual" value="anual">Anual
+                                     <input type="radio" name="periodo" id="radio-nenhuma" value="">Nenhuma
                                 </div>
                             </div>
                             <div class="control-tarefas" id="mes-tarefa">
