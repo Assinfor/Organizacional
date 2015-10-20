@@ -9,7 +9,8 @@
 <script src="<?php echo base_url();?>public/template/js/ekattor.js" type="text/javascript"></script>		
 <title>Login</title>
     </head>
-    <?php 
+	<body>
+	<?php 
     if(isset($_SESSION['messages'])){
     	echo "<div id='messages'>";
     	foreach($_SESSION['messages'] as $message){
@@ -26,7 +27,6 @@
     	<?php 
     	unset($_SESSION['messages']);
     }?>
-	<body>
         <div id="main_body">
             <div class="navbar navbar-top navbar-inverse">
                 <div class="navbar-inner">

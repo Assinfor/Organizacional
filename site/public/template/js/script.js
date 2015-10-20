@@ -11,6 +11,34 @@ $("#checkbox-matriz").click(function(){
 		}
 })
 
+$("#tarefa-select").change(function(){
+	if($(this).val()=="global"){
+		$("#regime-tarefa").css("display", "block");
+	}else{
+		$("#regime-tarefa").css("display", "none");
+	}
+})
+
+$("#tarefa-radio").change(function(){
+	if($('#radio-mensal').is(':checked')){
+		$(".control-tarefas").css("display", "none");
+		$("#dia-tarefa").css("display", "block");
+	}else if($('#radio-quinzenal').is(':checked')){
+		$(".control-tarefas").css("display", "none");
+		$("#dia-tarefa").css("display", "block");
+	}else if($('#radio-semestral').is(':checked')){
+		$(".control-tarefas").css("display", "none");
+		$("#mes-tarefa").css("display", "block");
+		$("#dia-tarefa").css("display", "block");
+	}else if($('#radio-anual').is(':checked')){
+		$(".control-tarefas").css("display", "none");
+		$("#mes-tarefa").css("display", "block");
+		$("#dia-tarefa").css("display", "block");
+	}else{
+		$(".control-tarefas").css("display", "none");
+	}
+})
+
 $("#adicionar-telefone").click(function(){
 	$countTel++;
     $("<div id='telefone-form-"+$countTel+"' class='control-group'>"+

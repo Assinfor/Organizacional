@@ -65,7 +65,6 @@ class Usuario extends CI_Controller {
 									$this->email_model->salvar($email);
 								}
 								$usuario = array(
-									'senha' => md5($this->input->post('senha')),
 									'pessoa_id' => $pessoa_id
 								);
 								if($this->usuario_model->salvar_usuario($usuario)){

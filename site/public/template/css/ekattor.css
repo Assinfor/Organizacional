@@ -2,6 +2,26 @@
 	display:none;
 }
 
+#regime-tarefa{
+	display:none;
+}
+
+#dia-tarefa{
+	display:none;
+}
+
+#dia2-tarefa{
+	display:none;
+}
+
+#mes-tarefa{
+	display:none;
+}
+
+#mes2-tarefa{
+	display:none;
+}
+
 .gerentes-header{
 	color:black;
 }

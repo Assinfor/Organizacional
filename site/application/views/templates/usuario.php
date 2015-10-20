@@ -78,13 +78,6 @@
                                 </div>
                             </div>
                             <div class="control-group">
-                                <label class="control-label">Senha:</label>
-                                <div class="controls">
-                                	<input type="password" style="display:none">
-                                    <input type="text" name="senha" maxlength="45" id="senha" autocomplete="off" class="senha" required/>
-                                </div>
-                            </div>
-                            <div class="control-group">
                                 <label class="control-label">Rua:</label>
                                 <div class="controls">
                                      <input type="text" name="endereco[logradouro]" maxlength="60" required/>

@@ -69,6 +69,7 @@ CREATE TABLE `anual` (
 
 LOCK TABLES `anual` WRITE;
 /*!40000 ALTER TABLE `anual` DISABLE KEYS */;
+INSERT INTO `anual` VALUES (8,1,1);
 /*!40000 ALTER TABLE `anual` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -110,7 +111,7 @@ CREATE TABLE `dia` (
   `dia` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -119,6 +120,7 @@ CREATE TABLE `dia` (
 
 LOCK TABLES `dia` WRITE;
 /*!40000 ALTER TABLE `dia` DISABLE KEYS */;
+INSERT INTO `dia` VALUES (1,1),(2,2),(3,3),(4,4),(5,5),(6,6),(7,7),(8,8),(9,9),(10,10),(11,11),(12,12),(13,13),(14,14),(15,15),(16,16),(17,17),(18,18),(19,19),(20,20),(21,21),(22,22),(23,23),(24,24),(25,25),(26,26),(27,27),(28,28),(29,29),(30,30),(31,31);
 /*!40000 ALTER TABLE `dia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,6 +148,7 @@ CREATE TABLE `dia_quinzenal` (
 
 LOCK TABLES `dia_quinzenal` WRITE;
 /*!40000 ALTER TABLE `dia_quinzenal` DISABLE KEYS */;
+INSERT INTO `dia_quinzenal` VALUES (2,6),(17,6);
 /*!40000 ALTER TABLE `dia_quinzenal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -188,7 +191,7 @@ CREATE TABLE `email` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_email_pessoa1_idx` (`pessoa_id`),
   CONSTRAINT `fk_email_pessoa1` FOREIGN KEY (`pessoa_id`) REFERENCES `pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -197,7 +200,7 @@ CREATE TABLE `email` (
 
 LOCK TABLES `email` WRITE;
 /*!40000 ALTER TABLE `email` DISABLE KEYS */;
-INSERT INTO `email` VALUES (1,'gersoncarneiro@msn.com',1),(2,'je@gmail',2),(3,'MiguelMartinsDias@dayrep.com',5),(4,'MiguelMartinsDias@dayrep.com',6),(5,'GustavoSousaLima@rhyta.com',7),(6,'AliceCunhaSousa@jourrapide.com',8),(7,'AntonioRochaFerreira@teleworm.us',9),(8,'FernandaGoncalvesFerreira@dayrep.com',10),(9,'DiegoFerreiraCavalcanti@jourrapide.com',11);
+INSERT INTO `email` VALUES (3,'MiguelMartinsDias@dayrep.com',5),(4,'MiguelMartinsDias@dayrep.com',6),(5,'GustavoSousaLima@rhyta.com',7),(6,'AliceCunhaSousa@jourrapide.com',8),(7,'AntonioRochaFerreira@teleworm.us',9),(8,'FernandaGoncalvesFerreira@dayrep.com',10),(9,'DiegoFerreiraCavalcanti@jourrapide.com',11),(11,'pamela_boyce@gmail.com',12),(12,'outro_email@msn.com',12),(13,'gersoncarneiro@msn.com',1),(14,'gerson.carneiro.de.souza@gmail.com',1);
 /*!40000 ALTER TABLE `email` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -221,7 +224,7 @@ CREATE TABLE `endereco` (
   KEY `fk_endereco_cidade1_idx` (`cidade_id`),
   CONSTRAINT `fk_endereco_cidade1` FOREIGN KEY (`cidade_id`) REFERENCES `cidade` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_endereco_pessoa1` FOREIGN KEY (`pessoa_id`) REFERENCES `pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -230,7 +233,7 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES (1,1,'Rua Pedro Piolly dos Santos','287','3L',1),(2,2,'Desp','123','De',4),(3,5,'Rua Irece','1186','Contagem',4),(4,6,'Rua Irece','1186','Contagem',4),(5,7,'Rua Santa Luzia','1649','Itabuna',2),(6,8,'Rua Sapucaia','1359','Aparecida',3),(7,9,'Rua São Valentim','1546','Join',3),(8,10,'Rua Boqueirão','1442','Campo Grande',3),(9,11,'Avenida Gonçalves','916','Salvador',1);
+INSERT INTO `endereco` VALUES (1,1,'Rua Pedro Piolly dos Santos','287','3L',2),(2,2,'Desp','123','De',4),(3,5,'Rua Irece','1186','Contagem',4),(4,6,'Rua Irece','1186','Contagem',4),(5,7,'Rua Santa Luzia','1649','Itabuna',2),(6,8,'Rua Sapucaia','1359','Aparecida',3),(7,9,'Rua São Valentim','1546','Join',3),(8,10,'Rua Boqueirão','1442','Campo Grande',3),(9,11,'Avenida Gonçalves','916','Salvador',1),(10,12,'Kimberly Way','741','Kansas',3);
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,7 +262,7 @@ CREATE TABLE `funcionario` (
 
 LOCK TABLES `funcionario` WRITE;
 /*!40000 ALTER TABLE `funcionario` DISABLE KEYS */;
-INSERT INTO `funcionario` VALUES ('5346346436',1,1),('5435436436',2,2),('23535325353',3,6),('4643646464',3,7),('4364436434',3,8),('365476358475475',4,9),('563754867574367',5,10),('469895074684368',6,11);
+INSERT INTO `funcionario` VALUES ('5346346436',1,1),('5435436436',2,2),('23535325353',3,6),('4643646464',3,7),('4364436434',3,8),('365476358475475',4,9),('563754867574367',5,10),('469895074684368',6,11),('576584674364575',1,12);
 /*!40000 ALTER TABLE `funcionario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,6 +347,7 @@ CREATE TABLE `mensal` (
 
 LOCK TABLES `mensal` WRITE;
 /*!40000 ALTER TABLE `mensal` DISABLE KEYS */;
+INSERT INTO `mensal` VALUES (4,13);
 /*!40000 ALTER TABLE `mensal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,7 +363,7 @@ CREATE TABLE `mes` (
   `mes` varchar(20) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -368,6 +372,7 @@ CREATE TABLE `mes` (
 
 LOCK TABLES `mes` WRITE;
 /*!40000 ALTER TABLE `mes` DISABLE KEYS */;
+INSERT INTO `mes` VALUES (1,'Janeiro'),(2,'Fevereiro'),(3,'Março'),(4,'Abril'),(5,'Maio'),(6,'Junho'),(7,'Julho'),(8,'Agosto'),(9,'Setembro'),(10,'Outubro'),(11,'Novembro'),(12,'Dezembro');
 /*!40000 ALTER TABLE `mes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -398,6 +403,7 @@ CREATE TABLE `mes_semestral` (
 
 LOCK TABLES `mes_semestral` WRITE;
 /*!40000 ALTER TABLE `mes_semestral` DISABLE KEYS */;
+INSERT INTO `mes_semestral` VALUES (2,7,3),(8,7,3);
 /*!40000 ALTER TABLE `mes_semestral` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -442,7 +448,7 @@ CREATE TABLE `pessoa` (
   `nome` varchar(60) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -451,7 +457,7 @@ CREATE TABLE `pessoa` (
 
 LOCK TABLES `pessoa` WRITE;
 /*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
-INSERT INTO `pessoa` VALUES (1,'Gerson Carneiro de Souza'),(2,'Junko Enoshima'),(3,'Empresa 1'),(4,'Empresa 1-A'),(5,'Miguel Martins Dias'),(6,'Miguel Martins Dias'),(7,'Gustavo Sousa Lima'),(8,'Alice Cunha Sousa'),(9,'Antônio Rocha Ferreira'),(10,'Fernanda Goncalves Ferreira'),(11,'Diego Ferreira Cavalcanti');
+INSERT INTO `pessoa` VALUES (1,'Gerson Carneiro de Souza'),(2,'Junko Enoshima'),(3,'Empresa 1'),(4,'Empresa 1-A'),(5,'Miguel Martins Dias'),(6,'Miguel Martins Dias'),(7,'Gustavo Sousa Lima'),(8,'Alice Cunha Sousa'),(9,'Antônio Rocha Ferreira'),(10,'Fernanda Goncalves Ferreira'),(11,'Diego Ferreira Cavalcanti'),(12,'Pamela J. Boyce');
 /*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -477,7 +483,7 @@ CREATE TABLE `pessoa_fisica` (
 
 LOCK TABLES `pessoa_fisica` WRITE;
 /*!40000 ALTER TABLE `pessoa_fisica` DISABLE KEYS */;
-INSERT INTO `pessoa_fisica` VALUES (1,'547.548.548-65','75665868'),(2,'335.454.364-36','646546546456'),(5,'306.215.131-56','32523532535'),(6,'306.215.131-56','55352353535'),(7,'428.450.816-42','35436466346'),(8,'757.649.392-59','454364364364'),(9,'354.364.364-74','475475464364'),(10,'754.756.865-75','548564379678'),(11,'458.934.789-47','487684378476');
+INSERT INTO `pessoa_fisica` VALUES (1,'547.548.548-65','75665868'),(2,'335.454.364-36','646546546456'),(5,'306.215.131-56','32523532535'),(6,'306.215.131-56','55352353535'),(7,'428.450.816-42','35436466346'),(8,'757.649.392-59','454364364364'),(9,'354.364.364-74','475475464364'),(10,'754.756.865-75','548564379678'),(11,'458.934.789-47','487684378476'),(12,'464.765.754-75','547687547456');
 /*!40000 ALTER TABLE `pessoa_fisica` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -534,6 +540,7 @@ CREATE TABLE `quinzenal` (
 
 LOCK TABLES `quinzenal` WRITE;
 /*!40000 ALTER TABLE `quinzenal` DISABLE KEYS */;
+INSERT INTO `quinzenal` VALUES (6);
 /*!40000 ALTER TABLE `quinzenal` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -584,6 +591,7 @@ CREATE TABLE `semestral` (
 
 LOCK TABLES `semestral` WRITE;
 /*!40000 ALTER TABLE `semestral` DISABLE KEYS */;
+INSERT INTO `semestral` VALUES (7);
 /*!40000 ALTER TABLE `semestral` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -625,12 +633,12 @@ CREATE TABLE `tarefa` (
   `titulo` varchar(60) DEFAULT NULL,
   `descricao` text,
   `tipo` enum('global','pessoal') NOT NULL COMMENT 'Global: tarefa geral que será replicada para diversos  funcionarios.\npesssoal: tarefa gerada de usuário para usuaário.',
-  `regime_tributario_id` int(10) unsigned NOT NULL,
+  `regime_tributario_id` int(10) unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_tarefa_regime_tributario1_idx` (`regime_tributario_id`),
   CONSTRAINT `fk_tarefa_regime_tributario1` FOREIGN KEY (`regime_tributario_id`) REFERENCES `regime_tributario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -639,6 +647,7 @@ CREATE TABLE `tarefa` (
 
 LOCK TABLES `tarefa` WRITE;
 /*!40000 ALTER TABLE `tarefa` DISABLE KEYS */;
+INSERT INTO `tarefa` VALUES (1,'Tarefa Diaria 1','Tarefa Diária','global',1),(2,'Tarefa Pessoal','Tarefa pessoal','pessoal',NULL),(4,'Tarefa Mensal','Mensal','global',2),(6,'Tarefa Quinzenal','Quinzenal','global',2),(7,'Tarefa Semestral','Semestral','global',1),(8,'Tarefa Anual','Anual','global',1);
 /*!40000 ALTER TABLE `tarefa` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -694,7 +703,7 @@ CREATE TABLE `telefone` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_telefone_pessoa1_idx` (`pessoa_id`),
   CONSTRAINT `fk_telefone_pessoa1` FOREIGN KEY (`pessoa_id`) REFERENCES `pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -703,7 +712,7 @@ CREATE TABLE `telefone` (
 
 LOCK TABLES `telefone` WRITE;
 /*!40000 ALTER TABLE `telefone` DISABLE KEYS */;
-INSERT INTO `telefone` VALUES (1,51,'98864519','celular',1),(2,45,'34545454','comercial',2),(3,51,'887997977','celular',2),(4,51,'46432178','residencial',5),(5,51,'5885868688','residencial',6),(6,51,'978769679','celular',7),(7,51,'9686767867','celular',8),(8,51,'9568786585','residencial',9),(9,51,'98565757','celular',10),(10,51,'9769876976','celular',11);
+INSERT INTO `telefone` VALUES (1,51,'98864519','celular',1),(2,45,'34545454','comercial',2),(4,51,'46432178','residencial',5),(5,51,'5885868688','residencial',6),(6,51,'978769679','celular',7),(7,51,'9686767867','celular',8),(8,51,'9568786585','residencial',9),(9,51,'98565757','celular',10),(10,51,'9769876976','celular',11),(11,51,'99986898','celular',1),(12,51,'35433111','residencial',1),(13,51,'978686866','celular',12),(14,51,'5355464374','comercial',12);
 /*!40000 ALTER TABLE `telefone` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -724,7 +733,7 @@ CREATE TABLE `usuario` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_usuario_pessoa1_idx` (`pessoa_id`),
   CONSTRAINT `fk_usuario_pessoa1` FOREIGN KEY (`pessoa_id`) REFERENCES `pessoa` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -733,7 +742,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
-INSERT INTO `usuario` VALUES (1,'ativo','f0fa25a3aa1d9e2cac08fcc08e40d8d8',NULL,1),(2,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,2),(3,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,5),(4,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,6),(5,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,7),(6,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,8),(7,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,9),(8,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,10),(9,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,11);
+INSERT INTO `usuario` VALUES (1,'ativo','f0fa25a3aa1d9e2cac08fcc08e40d8d8',NULL,1),(2,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,2),(3,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,5),(4,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,6),(5,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,7),(6,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,8),(7,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,9),(8,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,10),(9,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,11),(10,'ativo','81dc9bdb52d04dc20036dbd8313ed055',NULL,12);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -746,4 +755,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-16 16:22:50
+-- Dump completed on 2015-10-20 14:14:56
