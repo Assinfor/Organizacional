@@ -329,6 +329,10 @@ function editar_setor(id){
 }
 
 function editar_empresa(id){
+	emailTotal=1;
+	var counterTel=0;
+	var counterEmail=0;
+	var $cidade = $('#cidade-select').clone();
 	var $regime = $('#regime-select').clone();
 	var base_url='http://localhost/Organizacional/site/';
 	$.ajax({
@@ -336,6 +340,7 @@ function editar_empresa(id){
         dataType: 'json',
         type: "post",
         success: function(data){
+        			var pessoa=data[0].id;
         			$('#modal-body').html('');
         			$('#modal-body').append("<form action='"+base_url+"empresa/salvar_empresa/"+id+"' method='post'>"+
         					"<div class='padded'>"+
@@ -345,6 +350,28 @@ function editar_empresa(id){
 			                            "<input type='text' name='nome' value='"+data[0].nome+"' maxlength='60' required/>"+
 			                        "</div>"+
 			                    "</div>"+
+			                    "<div class='control-group'>"+
+				                "<label class='control-label'>Rua:</label>"+
+				                "<div class='controls'>"+
+				                     "<input type='text' name='endereco[logradouro]' value='"+data[0].logradouro+"' maxlength='60' required/>"+
+				                "</div>"+
+				            "</div>"+
+				            "<div class='control-group'>"+
+				                "<label class='control-label'>Número:</label>"+
+				                "<div class='controls'>"+
+				                     "<input type='text' name='endereco[numero]' value='"+data[0].numero+"' maxlength='10' required/>"+
+				                "</div>"+
+				            "</div>"+
+				            "<div class='control-group'>"+
+				                "<label class='control-label'>Bairro:</label>"+
+				                "<div class='controls'>"+
+				                     "<input type='text' name='endereco[bairro]' value='"+data[0].bairro+"' maxlength='40' required/>"+
+				                "</div>"+
+			                "<div class='control-group'>"+ 
+	                            "<label class='control-label'>Cidade:</label>"+
+	                            "<div class='controls' id='cidade-mark'>"+
+	                            "</div>"+
+	                            "</div>"+
 			                    "<div class='control-group'>"+
 	                                "<label class='control-label'>CNPJ:</label>"+
 	                                "<div class='controls'>"+
@@ -357,15 +384,67 @@ function editar_empresa(id){
 	                                     "<input type='text' name='pessoa_juridica[ie]' class='ie' value='"+data[0].ie+"' required/>"+
 	                                "</div>"+
 	                            "</div>"+
-	                            "<div class='control-group'>"+
+	                            "<div class='control-group' id='telefone-label-mark'>"+
 	                                "<label class='control-label'>Regime Tributário:</label>"+
 	                                "<div class='controls' id='regime-mark'>"+
 	                                "</div>"+
 	                            "</div>"+
+	                            "<div id=telefone-edit>"+
+	    				        "</div>"+
+	    				        "<div id='email-edit'>"+
+	    				        "</div>"+
 			                "<div class='form-actions'>"+
 			                    "<button type='submit' class='btn btn-blue'>Salvar Mudanças</button>"+
 			                "</div>"+
         				"</form>");
+        			$.ajax({
+		                 url: base_url+"usuario/buscar_telefones/"+id,
+		                 dataType: 'json',
+		                 type: "post",
+		                 success: function(data){
+		                	 $("<label id='telefone-mark-0'>Telefones:</label>").appendTo('#telefone-edit');
+		                 	$.each(data,function(index, element){
+		                 		$("<div id='telefone-mark-"+(counterTel+1)+"'>"+
+		                 				"<div id='telefone-form-"+counterTel+"' class='control-group'>"+
+		                 			    "<div class='controls'>"+
+		                 			    "<input id='id-tel-"+counterTel+"' name='id-tel[]' type='hidden' value='"+element.id+"'>"+
+		                 		    	"<input id='ddd-"+counterTel+"' type='text' name='ddd[]' class='ddd-form ddd-margin' value='"+element.ddd+"' maxlength='3' disabled/>"+
+		                 		         "<input id='telefone-"+counterTel+"'type='text' name='telefone[]' class='tel-form tel-margin' maxlength='10' value='"+element.numero+"' disabled/>"+
+		                 				"<a id='excluir-link-"+counterTel+"' onclick='deletarTelefoneEdit("+counterTel+","+element.ddd+","+element.numero+");return false;'>Excluir</a>"+
+		                 		    "</div>"+
+		                 		"</div>").insertAfter('#telefone-mark-'+counterTel);
+		                 		counterTel++;
+		                 		
+		                 	});
+		                 	$("<a id='add-telefone' onclick='adicionarEdit("+counterTel+");return false;'>Adicionar outro telefone</a>").insertAfter('#telefone-mark-'+counterTel);
+		                 	}
+		             });
+		        	 $.ajax({
+		                 url: base_url+"usuario/buscar_emails/"+id,
+		                 dataType: 'json',
+		                 type: "post",
+		                 success: function(data){
+		                	 $("<label id='email-mark-0'>E-mails:</label>").insertAfter('#telefone-label-mark');
+		                	 $.each(data,function(index, element){
+		                		 $("<div id='email-mark-"+(counterEmail+1)+"'>"+
+		                				"<div class='controls'>"+
+		                				"<input id='id-email-"+counterEmail+"' name='id-email[]' type='hidden' value='"+element.id+"'>"+
+		                                "<input id='email-"+counterEmail+"' type='email' name='email[]' maxlength='90' class='email' value='"+element.email+"' disabled/>"+
+		                                "<a id='excluir-link-email"+counterEmail+"' class='link-excluir-email' onclick='deletarEmailEdit("+counterEmail+","+element.id+");return false;'>Excluir</a>"+
+		                                "</div>"+
+			                 		    "</div>"+
+			                 		"</div>").insertAfter('#email-mark-'+counterEmail);
+			                 		counterEmail++;
+			                 		emailTotal++;
+		                	 });
+		                	 if(counterEmail==1){
+		                 			$('.link-excluir-email').hide();
+		                 		}
+		                	 $("<a id='add-email' onclick='adicionarEmailEdit("+counterEmail+");return false;'>Adicionar outro e-mail</a>").insertAfter('#email-mark-'+counterEmail);
+		                 }
+		        	 });
+			       	$cidade.val(data[0].cidade_id);
+			       	$cidade.insertAfter('#cidade-mark');
         			$regime.val(data[0].regime_id);
                 	$regime.insertAfter('#regime-mark');
                 	$('.cnpj').mask("99.999.999/999-99", {placeholder:"0"});

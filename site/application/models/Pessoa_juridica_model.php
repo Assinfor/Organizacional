@@ -11,10 +11,12 @@ class Pessoa_juridica_model extends CI_Model{
 	}
 	function buscar_empresa($id){
 		$this->db
-		->select('p.*, pj.*, rt.nome as regime, rt.id as regime_id')
+		->select('p.*, pj.*, rt.nome as regime, rt.id as regime_id, e.*, c.uf, c.nome as cidade')
 		->from('pessoa_juridica pj')
 		->join('pessoa p', 'p.id=pj.pessoa_id', 'left')
 		->join('regime_tributario rt', 'rt.id=pj.regime_tributario_id', 'left')
+		->join('endereco e', 'p.id=e.pessoa_id', 'left')
+		->join('cidade c', 'c.id=e.cidade_id','left')
 		->where('p.id =', $id);
 		$query = $this->db->get_where();
 		return $query->result();

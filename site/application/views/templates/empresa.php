@@ -76,6 +76,35 @@
                                 </div>
                             </div>
                             <div class="control-group">
+                                <label class="control-label">Rua:</label>
+                                <div class="controls">
+                                     <input type="text" name="endereco[logradouro]" maxlength="60" required/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Número:</label>
+                                <div class="controls">
+                                     <input type="text" name="endereco[numero]" maxlength='10' required/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Bairro:</label>
+                                <div class="controls">
+                                     <input type="text" name="endereco[bairro]" maxlength=40' required/>
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                <label class="control-label">Cidade:</label>
+                                <div class="controls">
+                                     <select name='endereco[cidade_id]' id="cidade-select">
+                                     <option value=''>Selecione uma Cidade</option>
+                                     <?php foreach($cidades as $cidade):?>
+									  <option value='<?php echo $cidade->id ?>'><?php echo $cidade->nome ?></option>
+									 <?php endforeach;?>
+									</select>
+                                </div>
+                            </div>
+                            <div class="control-group">
                                 <label class="control-label">CNPJ:</label>
                                 <div class="controls">
                                     <input type="text" name="pessoa_juridica[cnpj]" class="cnpj" placeholder='00.000.000/000-00' required/>
@@ -98,6 +127,33 @@
 									</select>
                                 </div>
                             </div>
+                            <label class="control-label">Telefone:</label>
+                            <div id="telefones">
+                            <div id="telefone-form-0" class="control-group">
+                                <div class="controls">
+                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" maxlength='3'>
+                                     <input type="text" name="telefone[]" class="tel-form" maxlength='10'>
+                                     <select name='tipo[]'>
+	                                     <option value=''>Selecione o Tipo de Telefone</option>
+	                                     <option value='comercial'>Comercial</option>
+	                                     <option value='residencial'>Residencial</option>
+										 <option value='celular'>Celular</option>
+									</select>
+                                </div>
+                            </div>
+                            </div>
+                            <a id="adicionar-telefone" onclick="return false;">Adicionar outro telefone</a>
+                            <br/>
+                            <label class="control-label">E-mail:</label>
+                            <div id="emails">
+                            <div id="email-form-0" class="control-group">
+                                <div class="controls">
+                                     <input type="email" name="email[]" maxlength='90' class='email'>
+                                </div>
+                            </div>
+                            </div>
+                            <a id="adicionar-email" onclick="return false;">Adicionar outro e-mail</a>
+                        </div>
                   			<div class="control-group">
                                 <div class="controls">
                                      <input type="checkbox" id="checkbox-matriz" name="filial"><p>Filial</p>

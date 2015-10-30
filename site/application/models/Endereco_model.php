@@ -22,4 +22,12 @@ class Endereco_model extends CI_Model{
 			}
 		}
 	}
+	function editar($endereco, $id){
+		if($this->db->where('pessoa_id=',$id)
+				->update('endereco', $endereco)){
+					return true;
+		}else{
+			return false;
+		}
+	}
 }

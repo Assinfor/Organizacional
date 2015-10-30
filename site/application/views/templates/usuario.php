@@ -139,9 +139,9 @@
                             <div id="telefones">
                             <div id="telefone-form-0" class="control-group">
                                 <div class="controls">
-                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" maxlength='3' required/>
-                                     <input type="text" name="telefone[]" class="tel-form" maxlength='10' required/>
-                                     <select name='tipo[]' required/>
+                                	<input id="ddd" type="text" name="ddd[]" class="ddd-form" maxlength='3'>
+                                     <input type="text" name="telefone[]" class="tel-form" maxlength='10'>
+                                     <select name='tipo[]'>
 	                                     <option value=''>Selecione o Tipo de Telefone</option>
 	                                     <option value='comercial'>Comercial</option>
 	                                     <option value='residencial'>Residencial</option>

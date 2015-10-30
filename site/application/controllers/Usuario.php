@@ -44,18 +44,20 @@ class Usuario extends CI_Controller {
 							$pessoa_fisica=$this->input->post('pessoa_fisica');
 							$pessoa_fisica['pessoa_id']=$pessoa_id;
 							if($this->pessoafisica_model->salvar($pessoa_fisica)){
-								$ddd = $this->input->post('ddd');
-								$numero = $this->input->post('telefone');
-								$tipo = $this->input->post('tipo');
-								foreach($ddd as $key=>$v){
-									$telefone = array(
-										'pessoa_id' => $pessoa_id,
-										'ddd' => $v,
-										'numero' => $numero[$key],
-										'tipo'	=> $tipo[$key]
-									);
-									$this->telefone_model->salvar($telefone);
-								}
+									$ddd = $this->input->post('ddd');
+									$numero = $this->input->post('telefone');
+									$tipo = $this->input->post('tipo');
+									foreach($ddd as $key=>$v){
+										if(!empty($v) and !empty($numero[$key]) and !empty($tipo[$key])){
+											$telefone = array(
+												'pessoa_id' => $pessoa_id,
+												'ddd' => $v,
+												'numero' => $numero[$key],
+												'tipo'	=> $tipo[$key]
+											);
+											$this->telefone_model->salvar($telefone);
+										}
+									}
 								$emails = $this->input->post('email');
 								foreach($emails as $email){
 									$email = array(
@@ -64,21 +66,13 @@ class Usuario extends CI_Controller {
 									);
 									$this->email_model->salvar($email);
 								}
-								$usuario = array(
-									'pessoa_id' => $pessoa_id
-								);
-								if($this->usuario_model->salvar_usuario($usuario)){
-									$funcionario = $this->input->post('funcionario');
-									$funcionario['pessoa_fisica_id']=$pessoa_id;
-									if($this->funcionario_model->salvar($funcionario)){
-										$this->view->set_message("Usuário adicionado com sucesso", "alert alert-success");
-										redirect('usuario', 'refresh');
-									}else{
-										$this->view->set_message("Erro ao salvar funcionário", "alert alert-error");
-										redirect('usuario', 'refresh');
-									}
+								$funcionario = $this->input->post('funcionario');
+								$funcionario['pessoa_fisica_id']=$pessoa_id;
+								if($this->funcionario_model->salvar($funcionario)){
+									$this->view->set_message("Usuário adicionado com sucesso", "alert alert-success");
+									redirect('usuario', 'refresh');
 								}else{
-									$this->view->set_message("Erro ao salvar usuário", "alert alert-error");
+									$this->view->set_message("Erro ao salvar funcionário", "alert alert-error");
 									redirect('usuario', 'refresh');
 								}
 							}else{
@@ -143,13 +137,15 @@ class Usuario extends CI_Controller {
 								$numero = $this->input->post('telefone');
 								$tipo = $this->input->post('tipo');
 								foreach($ddd as $key=>$v){
-									$telefone = array(
-											'pessoa_id' => $pessoa_id,
-											'ddd' => $v,
-											'numero' => $numero[$key],
-											'tipo'	=> $tipo[$key]
-									);
-									$this->telefone_model->salvar($telefone);
+									if(!empty($ddd) and !empty($numero) and !empty($tipo)){
+										$telefone = array(
+												'pessoa_id' => $pessoa_id,
+												'ddd' => $v,
+												'numero' => $numero[$key],
+												'tipo'	=> $tipo[$key]
+										);
+										$this->telefone_model->salvar($telefone);
+									}
 								}
 							}
 							if(isset($_POST['email-del'])){
@@ -161,11 +157,13 @@ class Usuario extends CI_Controller {
 							if(isset($_POST['email'])){
 								$emails = $this->input->post('email');
 								foreach($emails as $email){
-									$email = array(
-											'pessoa_id' => $pessoa_id,
-											'email' => $email
-									);
-									$this->email_model->salvar($email);
+									if(!empty($email)){
+										$email = array(
+												'pessoa_id' => $pessoa_id,
+												'email' => $email
+										);
+										$this->email_model->salvar($email);
+									}
 								}
 							}
 							$this->view->set_message("Mudanças salvas com sucesso", "alert alert-success");
